@@ -1,69 +1,68 @@
-# React + TypeScript + Vite
+# Elora PWA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Elora is a Progressive Web App (PWA) for AI-powered skin analysis and diagnosis. Users can upload or capture a photo of their skin, describe their symptoms, and receive an instant AI-driven analysis. Elora is designed for accessibility, privacy, and ease of use, and works seamlessly on both desktop and mobile devices.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **AI Skin Analysis:** Upload or take a photo and describe symptoms to get an instant AI-powered diagnosis.
+- **Symptom Input:** Add symptoms manually or with quick-add buttons.
+- **Step-by-Step Feedback:** See real-time progress as your data is analyzed.
+- **Modern UI:** Clean, responsive design with accessibility in mind.
+- **Medical Disclaimer:** Results are informational and not a substitute for professional medical advice.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Clone the Repository
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+git clone <repo-url>
+cd elora-pwa
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+pnpm install
 ```
+
+### 3. Start the Development Server
+
+```sh
+pnpm dev
+```
+
+The app will be available at [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
+
+### 4. Build for Production
+
+```sh
+pnpm build
+```
+
+The production-ready files will be in the `dist/` directory.
+
+### 5. Preview the Production Build
+
+```sh
+pnpm preview
+```
+
+## Project Structure
+
+- `src/components/` — UI components, including the scan screen and result display
+- `src/features/diagnosis/` — Diagnosis logic, API calls, and types
+- `src/stores/` — State management (e.g., for diagnosis results)
+- `src/lib/` — API client and configuration
+
+## Configuration
+
+- API endpoint and other settings are managed in `src/lib/config.ts`.
+- Authentication tokens are stored in local storage under the key defined in `src/constants.ts`.
+
+## Disclaimer
+
+**Elora is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider with any questions you may have regarding a medical condition.**
+
+---
+
+For questions or contributions, please open an issue or pull request on the repository.
