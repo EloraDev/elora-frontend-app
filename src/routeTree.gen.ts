@@ -20,11 +20,16 @@ import { Route as dashboardDashboardResultRouteImport } from './routes/(dashboar
 import { Route as dashboardDashboardRecordsRouteImport } from './routes/(dashboard)/dashboard/records'
 import { Route as dashboardDashboardProfileRouteImport } from './routes/(dashboard)/dashboard/profile'
 import { Route as dashboardDashboardAppointmentsRouteImport } from './routes/(dashboard)/dashboard/appointments'
+import { Route as authAuthSignupRouteImport } from './routes/(auth)/auth/signup'
+import { Route as authAuthLoginRouteImport } from './routes/(auth)/auth/login'
+import { Route as publicPublicOnboardingIndexRouteImport } from './routes/(public)/_public/onboarding/index'
 import { Route as dashboardDashboardScanIndexRouteImport } from './routes/(dashboard)/dashboard/scan/index'
 import { Route as dashboardDashboardResultIndexRouteImport } from './routes/(dashboard)/dashboard/result/index'
 import { Route as dashboardDashboardRecordsIndexRouteImport } from './routes/(dashboard)/dashboard/records/index'
 import { Route as dashboardDashboardProfileIndexRouteImport } from './routes/(dashboard)/dashboard/profile/index'
 import { Route as dashboardDashboardAppointmentsIndexRouteImport } from './routes/(dashboard)/dashboard/appointments/index'
+import { Route as publicPublicOnboardingPaymentRouteImport } from './routes/(public)/_public/onboarding/payment'
+import { Route as publicPublicOnboardingBookingRouteImport } from './routes/(public)/_public/onboarding/booking'
 
 const publicRouteImport = createFileRoute('/(public)')()
 
@@ -80,6 +85,22 @@ const dashboardDashboardAppointmentsRoute =
     path: '/appointments',
     getParentRoute: () => dashboardDashboardRoute,
   } as any)
+const authAuthSignupRoute = authAuthSignupRouteImport.update({
+  id: '/(auth)/auth/signup',
+  path: '/auth/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authAuthLoginRoute = authAuthLoginRouteImport.update({
+  id: '/(auth)/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicPublicOnboardingIndexRoute =
+  publicPublicOnboardingIndexRouteImport.update({
+    id: '/onboarding/',
+    path: '/onboarding/',
+    getParentRoute: () => publicPublicRoute,
+  } as any)
 const dashboardDashboardScanIndexRoute =
   dashboardDashboardScanIndexRouteImport.update({
     id: '/',
@@ -110,36 +131,60 @@ const dashboardDashboardAppointmentsIndexRoute =
     path: '/',
     getParentRoute: () => dashboardDashboardAppointmentsRoute,
   } as any)
+const publicPublicOnboardingPaymentRoute =
+  publicPublicOnboardingPaymentRouteImport.update({
+    id: '/onboarding/payment',
+    path: '/onboarding/payment',
+    getParentRoute: () => publicPublicRoute,
+  } as any)
+const publicPublicOnboardingBookingRoute =
+  publicPublicOnboardingBookingRouteImport.update({
+    id: '/onboarding/booking',
+    path: '/onboarding/booking',
+    getParentRoute: () => publicPublicRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/dashboard': typeof dashboardDashboardRouteWithChildren
   '/': typeof publicPublicIndexRoute
+  '/auth/login': typeof authAuthLoginRoute
+  '/auth/signup': typeof authAuthSignupRoute
   '/dashboard/appointments': typeof dashboardDashboardAppointmentsRouteWithChildren
   '/dashboard/profile': typeof dashboardDashboardProfileRouteWithChildren
   '/dashboard/records': typeof dashboardDashboardRecordsRouteWithChildren
   '/dashboard/result': typeof dashboardDashboardResultRouteWithChildren
   '/dashboard/scan': typeof dashboardDashboardScanRouteWithChildren
   '/dashboard/': typeof dashboardDashboardIndexRoute
+  '/onboarding/booking': typeof publicPublicOnboardingBookingRoute
+  '/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
   '/dashboard/appointments/': typeof dashboardDashboardAppointmentsIndexRoute
   '/dashboard/profile/': typeof dashboardDashboardProfileIndexRoute
   '/dashboard/records/': typeof dashboardDashboardRecordsIndexRoute
   '/dashboard/result/': typeof dashboardDashboardResultIndexRoute
   '/dashboard/scan/': typeof dashboardDashboardScanIndexRoute
+  '/onboarding': typeof publicPublicOnboardingIndexRoute
 }
 export interface FileRoutesByTo {
+  '/auth/login': typeof authAuthLoginRoute
+  '/auth/signup': typeof authAuthSignupRoute
   '/dashboard': typeof dashboardDashboardIndexRoute
   '/': typeof publicPublicIndexRoute
+  '/onboarding/booking': typeof publicPublicOnboardingBookingRoute
+  '/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
   '/dashboard/appointments': typeof dashboardDashboardAppointmentsIndexRoute
   '/dashboard/profile': typeof dashboardDashboardProfileIndexRoute
   '/dashboard/records': typeof dashboardDashboardRecordsIndexRoute
   '/dashboard/result': typeof dashboardDashboardResultIndexRoute
   '/dashboard/scan': typeof dashboardDashboardScanIndexRoute
+  '/onboarding': typeof publicPublicOnboardingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(dashboard)/dashboard': typeof dashboardDashboardRouteWithChildren
   '/(public)': typeof publicRouteWithChildren
   '/(public)/_public': typeof publicPublicRouteWithChildren
+  '/(auth)/auth/login': typeof authAuthLoginRoute
+  '/(auth)/auth/signup': typeof authAuthSignupRoute
   '/(dashboard)/dashboard/appointments': typeof dashboardDashboardAppointmentsRouteWithChildren
   '/(dashboard)/dashboard/profile': typeof dashboardDashboardProfileRouteWithChildren
   '/(dashboard)/dashboard/records': typeof dashboardDashboardRecordsRouteWithChildren
@@ -147,42 +192,57 @@ export interface FileRoutesById {
   '/(dashboard)/dashboard/scan': typeof dashboardDashboardScanRouteWithChildren
   '/(dashboard)/dashboard/': typeof dashboardDashboardIndexRoute
   '/(public)/_public/': typeof publicPublicIndexRoute
+  '/(public)/_public/onboarding/booking': typeof publicPublicOnboardingBookingRoute
+  '/(public)/_public/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
   '/(dashboard)/dashboard/appointments/': typeof dashboardDashboardAppointmentsIndexRoute
   '/(dashboard)/dashboard/profile/': typeof dashboardDashboardProfileIndexRoute
   '/(dashboard)/dashboard/records/': typeof dashboardDashboardRecordsIndexRoute
   '/(dashboard)/dashboard/result/': typeof dashboardDashboardResultIndexRoute
   '/(dashboard)/dashboard/scan/': typeof dashboardDashboardScanIndexRoute
+  '/(public)/_public/onboarding/': typeof publicPublicOnboardingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/dashboard'
     | '/'
+    | '/auth/login'
+    | '/auth/signup'
     | '/dashboard/appointments'
     | '/dashboard/profile'
     | '/dashboard/records'
     | '/dashboard/result'
     | '/dashboard/scan'
     | '/dashboard/'
+    | '/onboarding/booking'
+    | '/onboarding/payment'
     | '/dashboard/appointments/'
     | '/dashboard/profile/'
     | '/dashboard/records/'
     | '/dashboard/result/'
     | '/dashboard/scan/'
+    | '/onboarding'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/auth/login'
+    | '/auth/signup'
     | '/dashboard'
     | '/'
+    | '/onboarding/booking'
+    | '/onboarding/payment'
     | '/dashboard/appointments'
     | '/dashboard/profile'
     | '/dashboard/records'
     | '/dashboard/result'
     | '/dashboard/scan'
+    | '/onboarding'
   id:
     | '__root__'
     | '/(dashboard)/dashboard'
     | '/(public)'
     | '/(public)/_public'
+    | '/(auth)/auth/login'
+    | '/(auth)/auth/signup'
     | '/(dashboard)/dashboard/appointments'
     | '/(dashboard)/dashboard/profile'
     | '/(dashboard)/dashboard/records'
@@ -190,16 +250,21 @@ export interface FileRouteTypes {
     | '/(dashboard)/dashboard/scan'
     | '/(dashboard)/dashboard/'
     | '/(public)/_public/'
+    | '/(public)/_public/onboarding/booking'
+    | '/(public)/_public/onboarding/payment'
     | '/(dashboard)/dashboard/appointments/'
     | '/(dashboard)/dashboard/profile/'
     | '/(dashboard)/dashboard/records/'
     | '/(dashboard)/dashboard/result/'
     | '/(dashboard)/dashboard/scan/'
+    | '/(public)/_public/onboarding/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   dashboardDashboardRoute: typeof dashboardDashboardRouteWithChildren
   publicRoute: typeof publicRouteWithChildren
+  authAuthLoginRoute: typeof authAuthLoginRoute
+  authAuthSignupRoute: typeof authAuthSignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -274,6 +339,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof dashboardDashboardAppointmentsRouteImport
       parentRoute: typeof dashboardDashboardRoute
     }
+    '/(auth)/auth/signup': {
+      id: '/(auth)/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof authAuthSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/auth/login': {
+      id: '/(auth)/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof authAuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/_public/onboarding/': {
+      id: '/(public)/_public/onboarding/'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof publicPublicOnboardingIndexRouteImport
+      parentRoute: typeof publicPublicRoute
+    }
     '/(dashboard)/dashboard/scan/': {
       id: '/(dashboard)/dashboard/scan/'
       path: '/'
@@ -308,6 +394,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/appointments/'
       preLoaderRoute: typeof dashboardDashboardAppointmentsIndexRouteImport
       parentRoute: typeof dashboardDashboardAppointmentsRoute
+    }
+    '/(public)/_public/onboarding/payment': {
+      id: '/(public)/_public/onboarding/payment'
+      path: '/onboarding/payment'
+      fullPath: '/onboarding/payment'
+      preLoaderRoute: typeof publicPublicOnboardingPaymentRouteImport
+      parentRoute: typeof publicPublicRoute
+    }
+    '/(public)/_public/onboarding/booking': {
+      id: '/(public)/_public/onboarding/booking'
+      path: '/onboarding/booking'
+      fullPath: '/onboarding/booking'
+      preLoaderRoute: typeof publicPublicOnboardingBookingRouteImport
+      parentRoute: typeof publicPublicRoute
     }
   }
 }
@@ -407,10 +507,16 @@ const dashboardDashboardRouteWithChildren =
 
 interface publicPublicRouteChildren {
   publicPublicIndexRoute: typeof publicPublicIndexRoute
+  publicPublicOnboardingBookingRoute: typeof publicPublicOnboardingBookingRoute
+  publicPublicOnboardingPaymentRoute: typeof publicPublicOnboardingPaymentRoute
+  publicPublicOnboardingIndexRoute: typeof publicPublicOnboardingIndexRoute
 }
 
 const publicPublicRouteChildren: publicPublicRouteChildren = {
   publicPublicIndexRoute: publicPublicIndexRoute,
+  publicPublicOnboardingBookingRoute: publicPublicOnboardingBookingRoute,
+  publicPublicOnboardingPaymentRoute: publicPublicOnboardingPaymentRoute,
+  publicPublicOnboardingIndexRoute: publicPublicOnboardingIndexRoute,
 }
 
 const publicPublicRouteWithChildren = publicPublicRoute._addFileChildren(
@@ -431,6 +537,8 @@ const publicRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   dashboardDashboardRoute: dashboardDashboardRouteWithChildren,
   publicRoute: publicRouteWithChildren,
+  authAuthLoginRoute: authAuthLoginRoute,
+  authAuthSignupRoute: authAuthSignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
