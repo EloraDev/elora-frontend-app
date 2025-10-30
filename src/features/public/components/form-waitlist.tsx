@@ -39,9 +39,9 @@ function FormWaitList() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="max-w-[555px] font-roboto-mono backdrop-blur-sm rounded-sm bg-[#ffffff33] pb-[39px] pt-[26px] text-sidebar-primary-foreground px-17"
+      className="font-roboto-mono text-sidebar-primary-foreground max-w-[555px] rounded-sm bg-[#ffffff33] px-6 pt-[26px] pb-[39px] backdrop-blur-sm md:px-17"
     >
-      <h4 className=" font-medium mb-5 text-base uppercase ">
+      <h4 className="mb-5 text-base font-medium uppercase">
         join the waitlist
       </h4>
       <FieldGroup className="gap-5">
@@ -50,7 +50,7 @@ function FormWaitList() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel className="uppercase text-xs" htmlFor={field.name}>
+              <FieldLabel className="text-xs uppercase" htmlFor={field.name}>
                 name
               </FieldLabel>
               <Input
@@ -58,7 +58,7 @@ function FormWaitList() {
                 id={field.name}
                 aria-invalid={fieldState.invalid}
                 placeholder="Your name here"
-                className="placeholder:text-base placeholder:text-black placeholder:font-medium placeholder:uppercase w-full h-[61px] rounded-[10px] bg-sidebar-primary-foreground pl-6 text-black text-base"
+                className="bg-sidebar-primary-foreground h-[61px] w-full rounded-[10px] pl-6 text-base text-black placeholder:text-base placeholder:font-medium placeholder:text-black placeholder:uppercase"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -70,7 +70,7 @@ function FormWaitList() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel className="uppercase text-xs" htmlFor={field.name}>
+              <FieldLabel className="text-xs uppercase" htmlFor={field.name}>
                 email
               </FieldLabel>
               <Input
@@ -79,7 +79,7 @@ function FormWaitList() {
                 type="email"
                 aria-invalid={fieldState.invalid}
                 placeholder="Your email here"
-                className="placeholder:text-base placeholder:text-black placeholder:font-medium placeholder:uppercase w-full h-[61px] rounded-[10px] bg-sidebar-primary-foreground pl-6 text-black text-base"
+                className="bg-sidebar-primary-foreground h-[61px] w-full rounded-[10px] pl-6 text-base text-black placeholder:text-base placeholder:font-medium placeholder:text-black placeholder:uppercase"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
