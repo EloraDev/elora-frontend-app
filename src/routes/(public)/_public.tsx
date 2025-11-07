@@ -1,14 +1,18 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import Header from "../../features/public/components/header";
 
 function PublicLayout() {
   return (
-    <main
-      className="flex h-full w-full flex-col"
-      role="main"
-      aria-label="Main content area"
-    >
-      <Outlet />
-    </main>
+    <>
+      <Header />
+      <main
+        className="flex h-full w-full flex-col"
+        role="main"
+        aria-label="Main content area"
+      >
+        <Outlet />
+      </main>
+    </>
   );
 }
 

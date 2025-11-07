@@ -56,6 +56,40 @@
   --sidebar-accent-foreground: #111827;
   --sidebar-border: #e5e7eb;
   --sidebar-ring: #3a9ba5;
+
+  /* Design System Colors - New Landing Page */
+  /* Neutrals & Grays */
+  --color-charcoal: #2d2a26;
+  --color-gray-dark: #1a1a1a;
+  --color-gray-darker: #010101;
+  --color-gray-darkest: #020202;
+  --color-slate: #4a5565;
+  --color-slate-dark: #364153;
+  --color-slate-darker: #101828;
+  --color-gray-blue: #99a1af;
+
+  /* Whites & Light Neutrals */
+  --color-white-neutral: #f9fafb;
+  --color-cream: #f5f1eb;
+  --color-cream-alt: #f5f2ec;
+
+  /* Browns & Earth Tones */
+  --color-brown-darkest: #200801;
+  --color-brown-dark: #5c321d;
+  --color-brown: #8b7355;
+  --color-tan: #d2977a;
+  --color-beige: #eadccb;
+  --color-peach: #e6b88c;
+  --color-peach-light: #e4b68a;
+  --color-peach-lighter: #e7c3b1;
+  --color-peach-lightest: #f8efe8;
+
+  /* Accent Colors */
+  --color-blue-light: #eff6ff;
+  --color-blue: #155dfc;
+  --color-blue-dark: #193cb8;
+  --color-green-light: #dcfce7;
+  --color-green: #008236;
 }
 
 .dark {
@@ -96,8 +130,9 @@
 @theme inline {
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   /* fonts */
-  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-roboto-mono: "Roboto Mono", ui-monospace, monospace;
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-roboto-mono: "Roboto Mono", monospace;
 
   /* colors */
   --color-background: var(--background);
@@ -143,7 +178,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-bricolage;
   }
 
   button {
