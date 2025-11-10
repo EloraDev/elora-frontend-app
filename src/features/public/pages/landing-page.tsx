@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { CircleCheckBig } from "lucide-react";
+import { CircleCheckBig, Pill, Scan, Upload, UserCheck } from "lucide-react";
 
 import { Button } from "../../../components/ui/button";
 
@@ -9,6 +9,30 @@ import heroImage2 from "@/assets/img/home-hero-2.png";
 import heroImage3 from "@/assets/img/home-hero-3.png";
 import backgroundImage from "@/assets/img/section-ai-showcase.jpg";
 import AIAnalysisCard from "../components/ai-analysis-card";
+import ImageSlide from "../components/image-slide";
+
+const howItWorksSteps = [
+  {
+    icon: <Upload size={32} />,
+    description:
+      "Take or upload a clear photo of the affected area using your smartphone or computer.",
+  },
+  {
+    icon: <Scan size={32} />,
+    description:
+      "Our advanced AI scans the image and provides instant diagnostic suggestions with confidence scores.",
+  },
+  {
+    icon: <UserCheck size={32} />,
+    description:
+      "A licensed dermatologist reviews the AI analysis and your case to confirm diagnosis.",
+  },
+  {
+    icon: <Pill size={32} />,
+    description:
+      "Receive a personalized treatment plan with prescriptions delivered to your pharmacy.",
+  },
+] as const;
 
 export const LandingPage = () => {
   const navigate = useNavigate();
@@ -82,7 +106,7 @@ export const LandingPage = () => {
 
             <Button
               asChild
-              className="h-[51px] w-60 rounded-full border border-(--color-peach-light) bg-transparent bg-[linear-gradient(90deg,#E4B68A_0%,#FFD7B1_100%)] text-sm font-normal text-black hover:bg-transparent hover:bg-[image:none] hover:text-white"
+              className="h-[51px] w-60 rounded-full border border-(--color-peach-light) bg-[linear-gradient(90deg,#E4B68A_0%,#FFD7B1_50%,#E4B68A_100%)] bg-[size:200%_100%] bg-[position:0%_50%] text-sm font-normal text-black transition-[background-position] duration-300 hover:bg-[position:100%_50%]"
             >
               <Link to="/auth/signup">Try Elora AI Now</Link>
             </Button>
@@ -113,7 +137,7 @@ export const LandingPage = () => {
         </div>
       </section>
 
-      {/* SECTION AI SHOWCASE */}
+      {/* SECTION: AI SHOWCASE */}
       <section
         className="flex min-h-[763.19px] w-full items-center justify-center bg-cover bg-[position:100%_100%] px-12.5 bg-blend-multiply"
         style={{
@@ -189,6 +213,132 @@ export const LandingPage = () => {
                 </div>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: HOW IT WORKS */}
+      <section className="min-h-[653px] bg-(--color-cream-alt) px-12.5">
+        <div className="mx-auto w-full max-w-335">
+          <div className="mx-auto mt-18 w-full max-w-320">
+            {/* HEADING */}
+            <div className="mx-auto mb-16 w-full max-w-[672px] text-center text-[40px] font-semibold text-black">
+              <h2>How Elora Works</h2>
+              <p className="mt-[15.3px] text-lg leading-7 text-(--color-slate)">
+                Get professional dermatology care in four simple steps. From
+                analysis to treatment, we've streamlined the entire process.
+              </p>
+            </div>
+
+            {/*  STEPS ON HOW IT WORKS */}
+            <div className="grid grid-cols-[repeat(auto-fit,_minmax(296px,1fr))] gap-8">
+              {howItWorksSteps.map((step, stepIndex) => (
+                <div className="relative min-h-[326px] rounded-2xl bg-white px-8 pt-14 shadow-[0px_1px_2px_-1px_#0000001A,0px_1px_3px_0px_#0000001A]">
+                  <div className="mb-17.5 flex size-16 items-center justify-center rounded-2xl bg-(--color-cream) text-(--color-brown)">
+                    {step.icon}
+                  </div>
+
+                  <p className="font-inter text-base leading-6.5 text-(--color-slate)">
+                    {step.description}
+                  </p>
+
+                  <div className="font-inter absolute -top-4 left-8 flex size-12 items-center justify-center rounded-full bg-(--color-brown) text-base text-white shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]">
+                    0{stepIndex + 1}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: BOOKING */}
+      <section className="px-12.5 pt-[25px] pb-[37px]">
+        <div className="mx-auto w-full max-w-335">
+          <div className="mx-auto mb-[49px] flex w-full max-w-172.5 flex-col items-center gap-y-[25px] text-center">
+            <span className="rounded-[44px] bg-(--color-beige) px-[21px] py-3 text-sm text-(--color-charcoal)">
+              Connect with Dermatologists
+            </span>
+
+            <div>
+              <h2 className="text-[50px] font-semibold text-black">
+                Your Skin. Our Experts.
+              </h2>
+              <p className="text-[22px] text-black">
+                Schedule a secure video or chat consultation with experienced
+                dermatologists who understand your skin’s unique needs.
+              </p>
+            </div>
+
+            <Button className="h-[51px] w-[265px] rounded-[39px] bg-[linear-gradient(90deg,#E4B68A_0%,#FFD7B1_50%,#E4B68A_100%)] bg-[size:200%_100%] bg-[position:0%_50%] text-sm font-normal text-black transition-[background-position] duration-300 hover:bg-[position:100%_50%]">
+              Book a Consultation
+            </Button>
+          </div>
+
+          {/* STATS */}
+          <div className="mx-auto flex w-full max-w-268 gap-8">
+            {/* 1 */}
+            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+              <span className="text-3xl text-white">50K+</span>
+              <span className="text-sm text-(--color-peach)">
+                Happy Patients
+              </span>
+            </div>
+
+            {/* 2 */}
+            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+              <span className="text-3xl text-white">4.9/5</span>
+              <span className="text-sm text-(--color-peach)">
+                Average Rating
+              </span>
+            </div>
+
+            {/* 3 */}
+            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+              <span className="text-3xl text-white">95%</span>
+              <span className="text-sm text-(--color-peach)">AI Accuracy</span>
+            </div>
+
+            {/* 4 */}
+            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+              <span className="text-3xl text-white">24h</span>
+              <span className="text-sm text-(--color-peach)">
+                Avg Response Time
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: ai-capabilities */}
+      <section className="min-h-[1023px] bg-(--color-cream-alt) px-12.5 py-11.5">
+        <div className="mx-auto w-full max-w-335 space-y-[55px] text-center">
+          {/* HEADING */}
+          <div className="mx-auto w-full max-w-165">
+            <h2 className="mb-4.5 text-[40px] font-semibold text-(--color-gray-darker)">
+              AI Trained for All Skin Types
+            </h2>
+            <p className="text-lg leading-7 text-(--color-slate)">
+              Our technology recognizes and accurately analyzes skin conditions
+              across all Fitzpatrick skin types, ensuring inclusive and
+              equitable care for everyone.
+            </p>
+          </div>
+          <ImageSlide />
+
+          <div className="mx-auto h-[193.1px] w-[896px] rounded-2xl border-[0.77px] border-white bg-white p-[32.76px]">
+            <div>
+              <h3 className="mb-4 text-[28px] font-semibold text-(--color-gray-darkest)">
+                Inclusive Dermatology Care
+              </h3>
+              <p className="text-base leading-6.5 text-(--color-slate)">
+                Traditional dermatology AI often struggles with darker skin
+                tones. Elora was built from the ground up with diversity in
+                mind, training our models on a balanced dataset representing all
+                skin types, ensuring accurate analysis and diagnosis for every
+                patient.
+              </p>
+            </div>
           </div>
         </div>
       </section>
