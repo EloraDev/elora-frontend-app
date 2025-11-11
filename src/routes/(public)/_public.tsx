@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import Header from "../../features/public/components/header";
+import Footer from "../../features/public/components/footer";
 
 function PublicLayout() {
   return (
@@ -12,6 +13,7 @@ function PublicLayout() {
       >
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 }

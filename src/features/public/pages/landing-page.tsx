@@ -1,6 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { CircleCheckBig, Pill, Scan, Upload, UserCheck } from "lucide-react";
+import {
+  ArrowRight,
+  CircleCheckBig,
+  Pill,
+  Scan,
+  Upload,
+  UserCheck,
+} from "lucide-react";
 
 import { Button } from "../../../components/ui/button";
 
@@ -326,7 +333,7 @@ export const LandingPage = () => {
           </div>
           <ImageSlide />
 
-          <div className="mx-auto h-[193.1px] w-[896px] rounded-2xl border-[0.77px] border-white bg-white p-[32.76px]">
+          <div className="mx-auto min-h-[193.1px] w-full max-w-[896px] rounded-2xl border-[0.77px] border-white bg-white p-[32.76px]">
             <div>
               <h3 className="mb-4 text-[28px] font-semibold text-(--color-gray-darkest)">
                 Inclusive Dermatology Care
@@ -340,6 +347,73 @@ export const LandingPage = () => {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION: GET STARTED */}
+      <section className="px-12.5 pt-10">
+        <div className="relative mx-auto mb-[51px] min-h-120 w-full max-w-335">
+          <div className="relative z-20 mx-auto min-h-[449px] w-full rounded-[34px] bg-(--color-brown-dark) pt-[43px] text-center text-white">
+            {/* HEADING */}
+            <div className="mb-[27px]">
+              <h2 className="mb-[27px] text-[50px] font-semibold">
+                Ready to Get Started?
+                <span className="block text-sm font-normal">
+                  No credit card required • HIPAA compliant • Available 24/7
+                </span>
+              </h2>
+              <p className="mx-auto w-full max-w-[721px] text-[22px] font-semibold">
+                Join thousands of patients who trust Elora for their dermatology
+                care. Get started with a free AI analysis today.
+              </p>
+            </div>
+
+            {/* FEATURES */}
+            <div className="mx-auto flex w-full max-w-168 items-center justify-between">
+              {/* PAIR ---1 */}
+              <div className="space-y-[28.79px]">
+                <div className="flex items-center gap-x-3">
+                  <CircleCheckBig size={20} />
+                  <span className="text-sm">Instant AI skin analysis</span>
+                </div>
+
+                <div className="flex items-center gap-x-3">
+                  <CircleCheckBig size={20} />
+                  <span className="text-sm">Secure and HIPAA compliant</span>
+                </div>
+              </div>
+
+              {/* PAIR ----2 */}
+              <div className="space-y-[28.79px]">
+                <div className="flex items-center gap-x-3">
+                  <CircleCheckBig size={20} />
+                  <span className="text-sm">
+                    Connect with board-certified dermatologists
+                  </span>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <CircleCheckBig size={20} />
+                  <span className="text-sm">
+                    Prescription delivery to your pharmacy
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-8.5 flex items-center justify-center gap-4">
+              <Button className="font-inter h-12.5 w-45.5 rounded-[6.8px] bg-white text-sm font-medium text-(--color-brown) transition-colors duration-300 hover:bg-gray-100">
+                Start Free Analysis <ArrowRight />
+              </Button>
+              <Button className="h-[51.07px] w-[218px] border-[1.54px] border-white bg-[#E5E5E54D] text-white transition-colors duration-300 hover:bg-[#E5E5E566]">
+                Schedule Consultation
+              </Button>
+            </div>
+          </div>
+
+          {/* DECORATIONS */}
+          <div className="absolute top-[363px] left-1/2 z-10 h-[101px] w-full max-w-[1263px] -translate-x-[50%] rounded-[30px] bg-(--color-tan)" />
+          <div className="absolute top-[379px] left-1/2 h-[101px] w-full max-w-[1185px] -translate-x-[50%] rounded-[30px] bg-(--color-peach-lighter)" />
         </div>
       </section>
     </React.Fragment>
