@@ -33,7 +33,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootComponent() {
   return (
     <main
-      className="flex min-h-screen flex-col w-full"
+      className="flex min-h-screen w-full flex-col"
       role="main"
       aria-label="Main application layout"
     >
