@@ -17,11 +17,11 @@ interface ResultsScreenProps {
 export function ResultsScreen({ result, onBackToDashboard }: ResultsScreenProps) {
   const [activeTab, setActiveTab] = useState("diagnosis")
 
-  const getConfidenceColor = (confidence: number) => {
-    if (confidence >= 0.8) return "text-green-600"
-    if (confidence >= 0.6) return "text-yellow-600"
-    return "text-red-600"
-  }
+  // const getConfidenceColor = (confidence: number) => {
+  //   if (confidence >= 0.8) return "text-green-600"
+  //   if (confidence >= 0.6) return "text-yellow-600"
+  //   return "text-red-600"
+  // }
 
   const getConfidenceBg = (confidence: number) => {
     if (confidence >= 0.8) return "bg-green-100 text-green-700"
@@ -29,11 +29,11 @@ export function ResultsScreen({ result, onBackToDashboard }: ResultsScreenProps)
     return "bg-red-100 text-red-700"
   }
 
-  const getProgressColor = (confidence: number) => {
-    if (confidence >= 0.8) return "bg-green-500"
-    if (confidence >= 0.6) return "bg-yellow-500"
-    return "bg-red-500"
-  }
+  // const getProgressColor = (confidence: number) => {
+  //   if (confidence >= 0.8) return "bg-green-500"
+  //   if (confidence >= 0.6) return "bg-yellow-500"
+  //   return "bg-red-500"
+  // }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">

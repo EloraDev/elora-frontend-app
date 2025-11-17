@@ -1,16 +1,16 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SplashScreen } from '../../components/splash-screen';
 import { AuthFlow } from '../../components/auth/auth-flow';
-import { AppContainer } from '../../components/app-container';
+// import { AppContainer } from '../../components/app-container';
 import { useRouter } from '@tanstack/react-router';
 import { useUserStore } from '../../stores/user-store';
 
 
 function Home() {
   const [showSplash, setShowSplash] = useState(true)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const {setUser, user} = useUserStore()
+  const [, setIsAuthenticated] = useState(false)
+  const {setUser} = useUserStore()
   // const [user, setUser] = useState<any>(null)
   const router = useRouter()
 

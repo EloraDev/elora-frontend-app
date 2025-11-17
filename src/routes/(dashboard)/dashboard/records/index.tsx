@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { BottomNavigation } from '../../../../components/bottom-navigation'
-import { ScanScreen } from '../../../../components/screens/scan-screen'
+// import { useState } from 'react'
+// import { BottomNavigation } from '../../../../components/bottom-navigation'
+// import { ScanScreen } from '../../../../components/screens/scan-screen'
 import { createFileRoute } from '@tanstack/react-router'
 import { RecordsPage } from '../../../../features/pages/records-page'
 

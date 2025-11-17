@@ -5,6 +5,6 @@ export const Route = createFileRoute('/(dashboard)/dashboard/result/')({
   component: () => <ResultPage />,
 })
 
-function RouteComponent() {
-  return <div>Hello "/(dashboard)/dashboard/result/"!</div>
-}
+// function RouteComponent() {
+//   return <div>Hello "/(dashboard)/dashboard/result/"!</div>
+// }

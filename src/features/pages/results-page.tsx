@@ -1,11 +1,11 @@
 import { BottomNavigation } from '../../components/bottom-navigation'
-import { useUserStore } from '../../stores/user-store'
+// import { useUserStore } from '../../stores/user-store'
 import { ResultsScreen } from '../../components/screens/results-screen'
 import { useResultStore } from '../../stores/result-store'
 import { useRouter } from '@tanstack/react-router'
 
 export const ResultPage = () => {
-  const { user } = useUserStore()
+  // const { user } = useUserStore()
   const { result } = useResultStore()
   const router = useRouter()
   

@@ -12,7 +12,9 @@ interface MedicalRecordsScreenProps {
   user: any
 }
 
-export function MedicalRecordsScreen({ user }: MedicalRecordsScreenProps) {
+export function MedicalRecordsScreen({ 
+  // user 
+}: MedicalRecordsScreenProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterStatus, setFilterStatus] = useState("all")
   const [sortBy, setSortBy] = useState("date")

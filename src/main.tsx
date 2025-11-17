@@ -6,7 +6,7 @@ import {
   RouterProvider,
   createRouter,
   Outlet,
-  createRouteMask
+  // createRouteMask
 } from '@tanstack/react-router'
 
 import { getQueryClient } from "./providers/query.provider";

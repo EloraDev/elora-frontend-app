@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 
-import { apiClient } from "../../../lib/client"
+// import { apiClient } from "../../../lib/client"
 import { handleError, handleResponse } from "../../../utils/response";
 import type { DiagnosisFormData } from "../schemas";
 import type { CreateDiagnosisResponse, DiagnosisResult } from "../types";

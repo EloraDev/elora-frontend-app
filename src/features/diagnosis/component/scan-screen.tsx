@@ -16,7 +16,7 @@ interface ScanScreenProps {
   onDiagnosisComplete: (result: DiagnosisResult) => void
 }
 
-export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
+export function ScanScreen({}: ScanScreenProps) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [symptoms, setSymptoms] = useState("")

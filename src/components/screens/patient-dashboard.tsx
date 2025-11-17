@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+// import { useState } from "react"
 import {
   Camera,
   TrendingUp,
@@ -23,13 +23,15 @@ interface PatientDashboardProps {
   onNavigateToScan?: () => void
 }
 
-export function PatientDashboard({ user, onNavigateToScan }: PatientDashboardProps) {
-  const [greeting] = useState(() => {
-    const hour = new Date().getHours()
-    if (hour < 12) return "Good morning"
-    if (hour < 17) return "Good afternoon"
-    return "Good evening"
-  })
+export function PatientDashboard({ 
+  // user, 
+  onNavigateToScan }: PatientDashboardProps) {
+  // const [greeting] = useState(() => {
+  //   const hour = new Date().getHours()
+  //   if (hour < 12) return "Good morning"
+  //   if (hour < 17) return "Good afternoon"
+  //   return "Good evening"
+  // })
 
   const healthMetrics = {
     totalScans: 15,

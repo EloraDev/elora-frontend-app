@@ -2,7 +2,7 @@
 
 import { Home, ScanLine, FileText, Calendar, User } from "lucide-react"
 import { cn } from "../lib/utils"
-import { Button } from "./ui/button"
+// import { Button } from "./ui/button"
 import { Link, useRouter } from "@tanstack/react-router"
 
 interface BottomNavigationProps {
