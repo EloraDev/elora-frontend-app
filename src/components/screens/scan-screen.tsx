@@ -1,32 +1,40 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef } from "react"
-import { Camera, Upload, FileText, Loader2, X, Lightbulb, CheckCircle } from "lucide-react"
-import { Button } from "../ui/button"
-import { Textarea } from "../ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import { Badge } from "../ui/badge"
-import { useCreateDiagnosisMutation } from "../../features/diagnosis/api/mutation"
-import { useResultStore } from "../../stores/result-store"
-import type { DiagnosisResult } from "../../features/diagnosis/types"
+import { useState, useRef } from "react";
+import {
+  Camera,
+  Upload,
+  FileText,
+  Loader2,
+  X,
+  Lightbulb,
+  CheckCircle,
+} from "lucide-react";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { useCreateDiagnosisMutation } from "../../features/diagnosis/api/mutation";
+import { useResultStore } from "../../stores/result-store";
+import type { DiagnosisResult } from "../../features/diagnosis/types";
 
 interface ScanScreenProps {
-  onDiagnosisComplete: (result: DiagnosisResult) => void
+  onDiagnosisComplete: (result: DiagnosisResult) => void;
 }
 
 export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | null>(null)
-  const [symptoms, setSymptoms] = useState("")
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [analysisStep, setAnalysisStep] = useState(0)
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const cameraInputRef = useRef<HTMLInputElement>(null)
-  
-  const { setResult } = useResultStore()
-  const diagnosisMutation = useCreateDiagnosisMutation()
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [symptoms, setSymptoms] = useState("");
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisStep, setAnalysisStep] = useState(0);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+
+  const { setResult } = useResultStore();
+  const diagnosisMutation = useCreateDiagnosisMutation();
 
   const analysisSteps = [
     "Preprocessing image...",
@@ -34,52 +42,53 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
     "Analyzing symptoms...",
     "Finding similar cases...",
     "Generating report...",
-  ]
+  ];
 
   const handleImageSelect = (file: File) => {
-    setSelectedImage(file)
-    const reader = new FileReader()
+    setSelectedImage(file);
+    const reader = new FileReader();
     reader.onload = (e) => {
-      setImagePreview(e.target?.result as string)
-    }
-    reader.readAsDataURL(file)
-  }
+      reader;
+      setImagePreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      handleImageSelect(file)
+      handleImageSelect(file);
     }
-  }
+  };
 
   const removeImage = () => {
-    setSelectedImage(null)
-    setImagePreview(null)
-    if (fileInputRef.current) fileInputRef.current.value = ""
-    if (cameraInputRef.current) cameraInputRef.current.value = ""
-  }
+    setSelectedImage(null);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    if (cameraInputRef.current) cameraInputRef.current.value = "";
+  };
 
   const handleSubmit = async () => {
     if (!selectedImage && !symptoms.trim()) {
-      alert("Please upload an image or describe your symptoms")
-      return
+      alert("Please upload an image or describe your symptoms");
+      return;
     }
 
-    setIsAnalyzing(true)
-    setAnalysisStep(0)
+    setIsAnalyzing(true);
+    setAnalysisStep(0);
 
     // Simulate step-by-step analysis
     for (let i = 0; i < analysisSteps.length; i++) {
-      setAnalysisStep(i)
-      await new Promise((resolve) => setTimeout(resolve, 800))
+      setAnalysisStep(i);
+      await new Promise((resolve) => setTimeout(resolve, 800));
     }
 
     try {
       const result = await diagnosisMutation.mutateAsync({
         image: selectedImage || undefined,
         symptoms: symptoms.trim() || undefined,
-      })
-      console.log("result", result)
+      });
+      console.log("result", result);
 
       if (result.success && result.data) {
         // Add timestamp and uploaded image to the result
@@ -87,20 +96,20 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
           ...result.data,
           timestamp: new Date().toISOString(),
           uploaded_image: selectedImage || undefined,
-        }
-        
-        setResult(enhancedResult)
-        onDiagnosisComplete(enhancedResult)
+        };
+
+        setResult(enhancedResult);
+        onDiagnosisComplete(enhancedResult);
       } else {
-        alert("Analysis failed.")
+        alert("Analysis failed.");
       }
     } catch (error) {
-      console.error("Diagnosis error:", error)
-      alert("Analysis failed. Please try again.")
+      console.error("Diagnosis error:", error);
+      alert("Analysis failed. Please try again.");
     } finally {
-      setIsAnalyzing(false)
+      setIsAnalyzing(false);
     }
-  }
+  };
 
   const commonSymptoms = [
     "Itchy skin",
@@ -111,7 +120,7 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
     "Burning sensation",
     "Swelling",
     "Changes in mole",
-  ]
+  ];
 
   if (isAnalyzing) {
     return (
@@ -123,14 +132,27 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-xl font-bold text-gray-900">Analyzing Your Skin</h3>
-              <p className="text-gray-600 text-sm">Our AI is processing your data using advanced medical models</p>
+              <h3 className="text-xl font-bold text-gray-900">
+                Analyzing Your Skin
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Our AI is processing your data using advanced medical models
+              </p>
             </div>
 
             <div className="space-y-3">
               {analysisSteps.map((step, index) => (
-                <div key={index} className="flex items-center justify-between text-sm">
-                  <span className={index <= analysisStep ? "text-gray-900" : "text-gray-400"}>{step}</span>
+                <div
+                  key={index}
+                  className="flex items-center justify-between text-sm"
+                >
+                  <span
+                    className={
+                      index <= analysisStep ? "text-gray-900" : "text-gray-400"
+                    }
+                  >
+                    {step}
+                  </span>
                   {index < analysisStep ? (
                     <CheckCircle className="w-4 h-4 text-green-600" />
                   ) : index === analysisStep ? (
@@ -144,13 +166,14 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
 
             <div className="bg-blue-50 rounded-lg p-3">
               <p className="text-xs text-blue-800">
-                Analysis typically takes 10-15 seconds. Please wait while we process your data.
+                Analysis typically takes 10-15 seconds. Please wait while we
+                process your data.
               </p>
             </div>
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -160,7 +183,9 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
         <div className="max-w-md mx-auto px-4 py-6">
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold text-gray-900">Skin Analysis</h1>
-            <p className="text-gray-600">Upload a photo and describe your symptoms</p>
+            <p className="text-gray-600">
+              Upload a photo and describe your symptoms
+            </p>
           </div>
         </div>
       </div>
@@ -222,7 +247,9 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
                   <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
                     <Camera className="w-6 h-6 text-white" />
                   </div>
-                  <span className="text-sm font-medium text-blue-700">Take Photo</span>
+                  <span className="text-sm font-medium text-blue-700">
+                    Take Photo
+                  </span>
                 </Button>
                 <Button
                   variant="outline"
@@ -232,7 +259,9 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
                   <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
                     <Upload className="w-6 h-6 text-white" />
                   </div>
-                  <span className="text-sm font-medium text-green-700">From Gallery</span>
+                  <span className="text-sm font-medium text-green-700">
+                    From Gallery
+                  </span>
                 </Button>
               </div>
             )}
@@ -245,7 +274,13 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
               onChange={handleFileUpload}
               className="hidden"
             />
-            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileUpload}
+              className="hidden"
+            />
           </CardContent>
         </Card>
 
@@ -266,7 +301,9 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
             />
 
             <div className="space-y-3">
-              <p className="text-sm font-medium text-gray-700">Quick add symptoms:</p>
+              <p className="text-sm font-medium text-gray-700">
+                Quick add symptoms:
+              </p>
               <div className="flex flex-wrap gap-2">
                 {commonSymptoms.map((symptom) => (
                   <Badge
@@ -274,8 +311,10 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
                     variant="secondary"
                     className="cursor-pointer hover:bg-blue-100 hover:text-blue-700 transition-colors"
                     onClick={() => {
-                      const newSymptoms = symptoms ? `${symptoms}, ${symptom.toLowerCase()}` : symptom.toLowerCase()
-                      setSymptoms(newSymptoms)
+                      const newSymptoms = symptoms
+                        ? `${symptoms}, ${symptom.toLowerCase()}`
+                        : symptom.toLowerCase();
+                      setSymptoms(newSymptoms);
                     }}
                   >
                     + {symptom}
@@ -302,14 +341,15 @@ export function ScanScreen({ onDiagnosisComplete }: ScanScreenProps) {
             <div className="flex items-start space-x-3">
               <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
               <div className="text-xs text-red-800 leading-relaxed">
-                <strong>Medical Disclaimer:</strong> This AI analysis is for informational purposes only and should not
-                replace professional medical advice. Always consult with a healthcare provider for proper diagnosis and
-                treatment.
+                <strong>Medical Disclaimer:</strong> This AI analysis is for
+                informational purposes only and should not replace professional
+                medical advice. Always consult with a healthcare provider for
+                proper diagnosis and treatment.
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
+  );
 }
