@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-optical-sizing: auto;
+  font-display: swap;
+}
+
 :root {
   /* ELORA Brand Colors */
   --color-primary: #3a9ba5;
@@ -130,9 +139,9 @@
 @theme inline {
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   /* fonts */
-  --font-bricolage: "Bricolage Grotesque", sans-serif;
-  --font-inter: "Inter", sans-serif;
-  --font-roboto-mono: "Roboto Mono", monospace;
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-roboto-mono: "Roboto Mono", ui-monospace, monospace;
+  --font-bricolage: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 
   /* colors */
   --color-background: var(--background);
@@ -184,4 +193,12 @@
   button {
     cursor: pointer;
   }
+}
+
+.hide-scollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

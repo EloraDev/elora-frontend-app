@@ -15,6 +15,7 @@ import { Route as publicPublicRouteImport } from './routes/(public)/_public'
 import { Route as dashboardDashboardRouteImport } from './routes/(dashboard)/dashboard'
 import { Route as publicPublicIndexRouteImport } from './routes/(public)/_public/index'
 import { Route as dashboardDashboardIndexRouteImport } from './routes/(dashboard)/dashboard/index'
+import { Route as publicPublicLandingRouteImport } from './routes/(public)/_public/landing'
 import { Route as dashboardDashboardScanRouteImport } from './routes/(dashboard)/dashboard/scan'
 import { Route as dashboardDashboardResultRouteImport } from './routes/(dashboard)/dashboard/result'
 import { Route as dashboardDashboardRecordsRouteImport } from './routes/(dashboard)/dashboard/records'
@@ -55,6 +56,11 @@ const dashboardDashboardIndexRoute = dashboardDashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => dashboardDashboardRoute,
+} as any)
+const publicPublicLandingRoute = publicPublicLandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
+  getParentRoute: () => publicPublicRoute,
 } as any)
 const dashboardDashboardScanRoute = dashboardDashboardScanRouteImport.update({
   id: '/scan',
@@ -154,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/records': typeof dashboardDashboardRecordsRouteWithChildren
   '/dashboard/result': typeof dashboardDashboardResultRouteWithChildren
   '/dashboard/scan': typeof dashboardDashboardScanRouteWithChildren
+  '/landing': typeof publicPublicLandingRoute
   '/dashboard/': typeof dashboardDashboardIndexRoute
   '/onboarding/booking': typeof publicPublicOnboardingBookingRoute
   '/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/auth/login': typeof authAuthLoginRoute
   '/auth/signup': typeof authAuthSignupRoute
+  '/landing': typeof publicPublicLandingRoute
   '/dashboard': typeof dashboardDashboardIndexRoute
   '/': typeof publicPublicIndexRoute
   '/onboarding/booking': typeof publicPublicOnboardingBookingRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/(dashboard)/dashboard/records': typeof dashboardDashboardRecordsRouteWithChildren
   '/(dashboard)/dashboard/result': typeof dashboardDashboardResultRouteWithChildren
   '/(dashboard)/dashboard/scan': typeof dashboardDashboardScanRouteWithChildren
+  '/(public)/_public/landing': typeof publicPublicLandingRoute
   '/(dashboard)/dashboard/': typeof dashboardDashboardIndexRoute
   '/(public)/_public/': typeof publicPublicIndexRoute
   '/(public)/_public/onboarding/booking': typeof publicPublicOnboardingBookingRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/dashboard/records'
     | '/dashboard/result'
     | '/dashboard/scan'
+    | '/landing'
     | '/dashboard/'
     | '/onboarding/booking'
     | '/onboarding/payment'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
   to:
     | '/auth/login'
     | '/auth/signup'
+    | '/landing'
     | '/dashboard'
     | '/'
     | '/onboarding/booking'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/(dashboard)/dashboard/records'
     | '/(dashboard)/dashboard/result'
     | '/(dashboard)/dashboard/scan'
+    | '/(public)/_public/landing'
     | '/(dashboard)/dashboard/'
     | '/(public)/_public/'
     | '/(public)/_public/onboarding/booking'
@@ -303,6 +315,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/'
       preLoaderRoute: typeof dashboardDashboardIndexRouteImport
       parentRoute: typeof dashboardDashboardRoute
+    }
+    '/(public)/_public/landing': {
+      id: '/(public)/_public/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof publicPublicLandingRouteImport
+      parentRoute: typeof publicPublicRoute
     }
     '/(dashboard)/dashboard/scan': {
       id: '/(dashboard)/dashboard/scan'
@@ -506,6 +525,7 @@ const dashboardDashboardRouteWithChildren =
   dashboardDashboardRoute._addFileChildren(dashboardDashboardRouteChildren)
 
 interface publicPublicRouteChildren {
+  publicPublicLandingRoute: typeof publicPublicLandingRoute
   publicPublicIndexRoute: typeof publicPublicIndexRoute
   publicPublicOnboardingBookingRoute: typeof publicPublicOnboardingBookingRoute
   publicPublicOnboardingPaymentRoute: typeof publicPublicOnboardingPaymentRoute
@@ -513,6 +533,7 @@ interface publicPublicRouteChildren {
 }
 
 const publicPublicRouteChildren: publicPublicRouteChildren = {
+  publicPublicLandingRoute: publicPublicLandingRoute,
   publicPublicIndexRoute: publicPublicIndexRoute,
   publicPublicOnboardingBookingRoute: publicPublicOnboardingBookingRoute,
   publicPublicOnboardingPaymentRoute: publicPublicOnboardingPaymentRoute,

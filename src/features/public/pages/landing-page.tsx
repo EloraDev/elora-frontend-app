@@ -17,6 +17,8 @@ import heroImage3 from "@/assets/img/home-hero-3.png";
 import backgroundImage from "@/assets/img/section-ai-showcase.jpg";
 import AIAnalysisCard from "../components/ai-analysis-card";
 import ImageSlide from "../components/image-slide";
+import Footer from "../components/footer";
+import Header from "../components/header";
 
 const howItWorksSteps = [
   {
@@ -45,6 +47,7 @@ export const LandingPage = () => {
   const navigate = useNavigate();
   return (
     <React.Fragment>
+      <Header />
       {/* HERO SECTION */}
       <section className="px-12.5 pb-8">
         <div className="relative mx-auto mb-8 min-h-[703px] w-full max-w-335 overflow-hidden rounded-[28px] bg-(--color-peach-light)">
@@ -416,6 +419,7 @@ export const LandingPage = () => {
           <div className="absolute top-[379px] left-1/2 h-[101px] w-full max-w-[1185px] -translate-x-[50%] rounded-[30px] bg-(--color-peach-lighter)" />
         </div>
       </section>
+      <Footer />
     </React.Fragment>
   );
 };
