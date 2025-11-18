@@ -49,14 +49,14 @@ export const LandingPage = () => {
     <React.Fragment>
       <Header />
       {/* HERO SECTION */}
-      <section className="px-12.5 pb-8">
-        <div className="relative mx-auto mb-8 min-h-[703px] w-full max-w-335 overflow-hidden rounded-[28px] bg-(--color-peach-light)">
-          <div className="relative z-10 ml-18.5 max-w-[485px] pt-48.5 text-(--color-charcoal)">
+      <section className="px-5 pb-8 xl:px-12.5">
+        <div className="relative mx-auto mb-8 flex h-[clamp(500px,50vw,703px)] w-full max-w-335 items-center overflow-hidden rounded-[28px] bg-(--color-peach-light)">
+          <div className="relative z-10 mx-[clamp(20px,5vw,74px)] max-w-[485px] text-(--color-charcoal)">
             <div>
               <span className="font-inter text-sm leading-5 tracking-[-0.15px]">
                 Trusted by 10,000+ customers
               </span>
-              <h1 className="text-6xl leading-[104%] tracking-[0px]">
+              <h1 className="text-[clamp(40px,10vw,60px)] leading-[104%] tracking-[0px]">
                 Elora — <br />
                 Smarter Skin <br />
                 Care Starts Here
@@ -76,10 +76,14 @@ export const LandingPage = () => {
           </div>
 
           {/* IMAGES */}
-          <div className="absolute top-[-50px] left-[608px] h-[902px] w-[601px]">
+          {/* h-[902px] w-[601px]  left-[608px] */}
+          {/* right-[151px] */}
+          <div className="absolute top-[-50px] left-[min(calc(50vw-1rem),608px)] hidden h-[clamp(400px,45vw,902px)] w-[clamp(400px,45vw,601px)] min-[56.5rem]:block">
             <img src={heroImage1} alt="hero image 1" />
           </div>
-          <div className="absolute top-[-89px] left-[826px] h-[1095px] w-[730px]">
+
+          {/* h-[1095px] w-[730px] left-[826px] */}
+          <div className="absolute top-[-89px] right-[-214px] hidden h-[clamp(400px,55vw,1095px)] w-[clamp(400px,55vw,730px)] sm:block">
             <img src={heroImage2} alt="hero image 2" />
           </div>
 
@@ -99,13 +103,12 @@ export const LandingPage = () => {
         </div>
 
         {/* SUB HERO SECTION */}
-        <div className="relative mx-auto flex min-h-[373px] w-full max-w-[1109px] items-center overflow-hidden rounded-[44px] bg-(--color-brown-dark) pl-[63px]">
-          <div className="w-full max-w-[527px] space-y-2.5">
+        <div className="relative mx-auto flex min-h-[373px] w-full max-w-[1109px] items-center overflow-hidden rounded-[44px] bg-(--color-brown-dark) px-[clamp(20px,5vw,63px)]">
+          <div className="w-full space-y-2.5 sm:max-w-[min(60vw,527px)]">
             <span className="text-[13px] leading-[100%] font-semibold tracking-[0px] text-(--color-peach-light)">
               empowering, not replacing, dermatologists.
             </span>
-
-            <h2 className="text-[50px] leading-[100%] font-semibold text-white">
+            <h2 className="text-[clamp(30px,10vw,50px)] leading-[100%] font-semibold text-white">
               Intelligent Skin Analysis with Elora AI
             </h2>
 
@@ -123,7 +126,7 @@ export const LandingPage = () => {
           </div>
 
           {/* OUTLIER */}
-          <div className="absolute top-62 right-[117px] z-20 flex h-[57px] w-[313px] items-center gap-1.5 rounded-[10px] bg-white px-[7px]">
+          <div className="absolute top-62 right-[117px] z-20 hidden h-[57px] w-[313px] items-center gap-1.5 rounded-[10px] bg-white px-[7px] min-[55.3rem]:flex">
             <div className="size-[41px] rounded-[6px] bg-(--color-beige)" />
             <div className="text-black">
               <h6 className="text-[13px] font-semibold">Skin Diagnostics</h6>
@@ -134,7 +137,8 @@ export const LandingPage = () => {
           </div>
 
           {/* image and decoration */}
-          <div className="absolute top-[-77px] left-[836px] z-10 h-[561px] w-[393px]">
+          {/* left-[836px] */}
+          <div className="absolute top-[-77px] right-[-114px] z-10 hidden h-[561px] w-[393px] sm:block">
             <img src={heroImage3} alt="hero image 3" />
           </div>
 
@@ -149,20 +153,20 @@ export const LandingPage = () => {
 
       {/* SECTION: AI SHOWCASE */}
       <section
-        className="flex min-h-[763.19px] w-full items-center justify-center bg-cover bg-[position:100%_100%] px-12.5 bg-blend-multiply"
+        className="flex min-h-[763.19px] w-full items-center justify-center bg-cover bg-[position:100%_100%] px-5 py-10 bg-blend-multiply xl:px-12.5"
         style={{
           backgroundImage: `linear-gradient(var(--color-brown-darkest)), url(${backgroundImage})`,
         }}
       >
-        <div className="flex h-full w-full max-w-335 items-center justify-center gap-x-12">
+        <div className="flex h-full w-full max-w-335 flex-wrap items-center justify-center gap-12 xl:flex-nowrap">
           <AIAnalysisCard />
 
-          <div className="min-h-[571.19px] max-w-[616px] space-y-6">
-            <h3 className="max-w-[603px] text-[40px] leading-[48px] font-semibold text-(--color-peach-light)">
+          <div className="min-h-[571.19px] max-w-[616px] space-y-6 xl:shrink-0">
+            <h3 className="max-w-[603px] text-3xl leading-[48px] font-semibold text-(--color-peach-light) sm:text-[40px]">
               Advanced AI Technology You Can Trust
             </h3>
 
-            <p className="font-inter max-w-[559px] text-lg leading-[29.25px] text-(--color-white-neutral)">
+            <p className="font-inter max-w-[559px] text-base leading-[29.25px] text-(--color-white-neutral) sm:text-lg">
               Our AI has been trained on over 2 million dermatological images
               representing diverse skin types and conditions. It provides
               instant analysis with confidence percentages, giving you a head
@@ -178,10 +182,10 @@ export const LandingPage = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-[28px] font-semibold text-(--color-peach-light)">
+                  <h4 className="text-2xl font-semibold text-(--color-peach-light) sm:text-[28px]">
                     Trained on Diverse Data
                   </h4>
-                  <p className="font-inter text-base leading-[25.6px] text-(--color-white-neutral)">
+                  <p className="font-inter text-sm leading-[25.6px] text-(--color-white-neutral) sm:text-base">
                     Our AI recognizes conditions across all skin tones and
                     types, ensuring accurate analysis for everyone.
                   </p>
@@ -195,10 +199,10 @@ export const LandingPage = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-[28px] font-semibold text-(--color-peach-light)">
+                  <h4 className="text-2xl font-semibold text-(--color-peach-light) sm:text-[28px]">
                     Always Improving
                   </h4>
-                  <p className="font-inter text-base leading-[25.6px] text-(--color-white-neutral)">
+                  <p className="font-inter text-sm leading-[25.6px] text-(--color-white-neutral) sm:text-base">
                     Our machine learning models are continuously updated with
                     new data to improve accuracy and expand condition
                     recognition.
@@ -213,10 +217,10 @@ export const LandingPage = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-[28px] font-semibold text-(--color-peach-light)">
+                  <h4 className="text-2xl font-semibold text-(--color-peach-light) sm:text-[28px]">
                     Expert Validation
                   </h4>
-                  <p className="font-inter text-base leading-[25.6px] text-(--color-white-neutral)">
+                  <p className="font-inter text-sm leading-[25.6px] text-(--color-white-neutral) sm:text-base">
                     Every AI suggestion is reviewed by board-certified
                     dermatologists before any treatment recommendations.
                   </p>
@@ -228,12 +232,14 @@ export const LandingPage = () => {
       </section>
 
       {/* SECTION: HOW IT WORKS */}
-      <section className="min-h-[653px] bg-(--color-cream-alt) px-12.5">
+      <section className="min-h-[653px] bg-(--color-cream-alt) px-5 xl:px-12.5">
         <div className="mx-auto w-full max-w-335">
           <div className="mx-auto mt-18 w-full max-w-320">
             {/* HEADING */}
-            <div className="mx-auto mb-16 w-full max-w-[672px] text-center text-[40px] font-semibold text-black">
-              <h2>How Elora Works</h2>
+            <div className="mx-auto mb-16 w-full max-w-[672px] text-center text-black">
+              <h2 className="text-3xl font-semibold sm:text-[40px]">
+                How Elora Works
+              </h2>
               <p className="mt-[15.3px] text-lg leading-7 text-(--color-slate)">
                 Get professional dermatology care in four simple steps. From
                 analysis to treatment, we've streamlined the entire process.
@@ -241,9 +247,9 @@ export const LandingPage = () => {
             </div>
 
             {/*  STEPS ON HOW IT WORKS */}
-            <div className="grid grid-cols-[repeat(auto-fit,_minmax(296px,1fr))] gap-8">
+            <div className="grid gap-8 sm:grid-cols-[repeat(auto-fit,_minmax(296px,1fr))]">
               {howItWorksSteps.map((step, stepIndex) => (
-                <div className="relative min-h-[326px] rounded-2xl bg-white px-8 pt-14 shadow-[0px_1px_2px_-1px_#0000001A,0px_1px_3px_0px_#0000001A]">
+                <div className="relative min-h-[326px] rounded-2xl bg-white px-8 pt-14 pb-3 shadow-[0px_1px_2px_-1px_#0000001A,0px_1px_3px_0px_#0000001A]">
                   <div className="mb-17.5 flex size-16 items-center justify-center rounded-2xl bg-(--color-cream) text-(--color-brown)">
                     {step.icon}
                   </div>
@@ -263,7 +269,7 @@ export const LandingPage = () => {
       </section>
 
       {/* SECTION: BOOKING */}
-      <section className="px-12.5 pt-[25px] pb-[37px]">
+      <section className="px-5 pt-[25px] pb-[37px] xl:px-12.5">
         <div className="mx-auto w-full max-w-335">
           <div className="mx-auto mb-[49px] flex w-full max-w-172.5 flex-col items-center gap-y-[25px] text-center">
             <span className="rounded-[44px] bg-(--color-beige) px-[21px] py-3 text-sm text-(--color-charcoal)">
@@ -271,10 +277,10 @@ export const LandingPage = () => {
             </span>
 
             <div>
-              <h2 className="text-[50px] font-semibold text-black">
+              <h2 className="text-[40px] font-semibold text-black sm:text-[50px]">
                 Your Skin. Our Experts.
               </h2>
-              <p className="text-[22px] text-black">
+              <p className="text-lg text-black sm:text-[22px]">
                 Schedule a secure video or chat consultation with experienced
                 dermatologists who understand your skin’s unique needs.
               </p>
@@ -286,9 +292,9 @@ export const LandingPage = () => {
           </div>
 
           {/* STATS */}
-          <div className="mx-auto flex w-full max-w-268 gap-8">
+          <div className="mx-auto flex w-full max-w-268 flex-wrap justify-center gap-8">
             {/* 1 */}
-            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+            <div className="flex h-23 w-45 flex-col items-center justify-center rounded-full bg-(--color-brown-dark) sm:h-29.5 sm:w-61">
               <span className="text-3xl text-white">50K+</span>
               <span className="text-sm text-(--color-peach)">
                 Happy Patients
@@ -296,7 +302,7 @@ export const LandingPage = () => {
             </div>
 
             {/* 2 */}
-            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+            <div className="flex h-23 w-45 flex-col items-center justify-center rounded-full bg-(--color-brown-dark) sm:h-29.5 sm:w-61">
               <span className="text-3xl text-white">4.9/5</span>
               <span className="text-sm text-(--color-peach)">
                 Average Rating
@@ -304,13 +310,13 @@ export const LandingPage = () => {
             </div>
 
             {/* 3 */}
-            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+            <div className="flex h-23 w-45 flex-col items-center justify-center rounded-full bg-(--color-brown-dark) sm:h-29.5 sm:w-61">
               <span className="text-3xl text-white">95%</span>
               <span className="text-sm text-(--color-peach)">AI Accuracy</span>
             </div>
 
             {/* 4 */}
-            <div className="flex h-29.5 w-61 flex-col items-center justify-center rounded-full bg-(--color-brown-dark)">
+            <div className="flex h-23 w-45 flex-col items-center justify-center rounded-full bg-(--color-brown-dark) sm:h-29.5 sm:w-61">
               <span className="text-3xl text-white">24h</span>
               <span className="text-sm text-(--color-peach)">
                 Avg Response Time
@@ -321,11 +327,11 @@ export const LandingPage = () => {
       </section>
 
       {/* SECTION: ai-capabilities */}
-      <section className="min-h-[1023px] bg-(--color-cream-alt) px-12.5 py-11.5">
+      <section className="min-h-[1023px] bg-(--color-cream-alt) px-5 py-11.5 xl:px-12.5">
         <div className="mx-auto w-full max-w-335 space-y-[55px] text-center">
           {/* HEADING */}
           <div className="mx-auto w-full max-w-165">
-            <h2 className="mb-4.5 text-[40px] font-semibold text-(--color-gray-darker)">
+            <h2 className="mb-4.5 text-3xl font-semibold text-(--color-gray-darker) sm:text-[40px]">
               AI Trained for All Skin Types
             </h2>
             <p className="text-lg leading-7 text-(--color-slate)">
@@ -338,10 +344,10 @@ export const LandingPage = () => {
 
           <div className="mx-auto min-h-[193.1px] w-full max-w-[896px] rounded-2xl border-[0.77px] border-white bg-white p-[32.76px]">
             <div>
-              <h3 className="mb-4 text-[28px] font-semibold text-(--color-gray-darkest)">
+              <h3 className="mb-4 text-lg font-semibold text-(--color-gray-darkest) sm:text-[28px]">
                 Inclusive Dermatology Care
               </h3>
-              <p className="text-base leading-6.5 text-(--color-slate)">
+              <p className="text-sm leading-6.5 text-(--color-slate) sm:text-base">
                 Traditional dermatology AI often struggles with darker skin
                 tones. Elora was built from the ground up with diversity in
                 mind, training our models on a balanced dataset representing all
@@ -354,12 +360,12 @@ export const LandingPage = () => {
       </section>
 
       {/* SECTION: GET STARTED */}
-      <section className="px-12.5 pt-10">
+      <section className="px-5 pt-10 xl:px-12.5">
         <div className="relative mx-auto mb-[51px] min-h-120 w-full max-w-335">
-          <div className="relative z-20 mx-auto min-h-[449px] w-full rounded-[34px] bg-(--color-brown-dark) pt-[43px] text-center text-white">
+          <div className="relative z-20 mx-auto min-h-[449px] w-full rounded-[34px] bg-(--color-brown-dark) px-5 pt-[43px] pb-6 text-center text-white">
             {/* HEADING */}
             <div className="mb-[27px]">
-              <h2 className="mb-[27px] text-[50px] font-semibold">
+              <h2 className="mb-[27px] text-[clamp(40px,10vw,50px)] font-semibold">
                 Ready to Get Started?
                 <span className="block text-sm font-normal">
                   No credit card required • HIPAA compliant • Available 24/7
@@ -372,7 +378,7 @@ export const LandingPage = () => {
             </div>
 
             {/* FEATURES */}
-            <div className="mx-auto flex w-full max-w-168 items-center justify-between">
+            <div className="mx-auto flex w-full max-w-168 flex-wrap items-center justify-between gap-x-2 gap-y-[28.79px] text-left">
               {/* PAIR ---1 */}
               <div className="space-y-[28.79px]">
                 <div className="flex items-center gap-x-3">
@@ -404,7 +410,7 @@ export const LandingPage = () => {
             </div>
 
             {/* CTA */}
-            <div className="mt-8.5 flex items-center justify-center gap-4">
+            <div className="mt-8.5 flex flex-wrap items-center justify-center gap-4">
               <Button className="font-inter h-12.5 w-45.5 rounded-[6.8px] bg-white text-sm font-medium text-(--color-brown) transition-colors duration-300 hover:bg-gray-100">
                 Start Free Analysis <ArrowRight />
               </Button>

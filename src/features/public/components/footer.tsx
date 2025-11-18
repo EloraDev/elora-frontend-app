@@ -2,8 +2,8 @@ import { Facebook, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
 
 function Footer() {
   return (
-    <footer className="min-h-[388.3px] bg-(--color-gray-dark) px-12.5 pt-16 pb-8 text-white">
-      <div className="mx-auto w-full max-w-335 px-12.5">
+    <footer className="min-h-[388.3px] bg-(--color-gray-dark) px-5 pt-16 pb-8 text-white lg:px-12.5">
+      <div className="mx-auto w-full max-w-335 sm:px-5 lg:px-12.5">
         <div className="mb-12 flex flex-wrap gap-8">
           {/* COLUMN ----1 */}
           <div className="w-96 space-y-4">
