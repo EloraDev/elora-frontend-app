@@ -24,7 +24,7 @@ export const WaitlistPage = () => {
           backgroundSize: "cover",
           backgroundPosition: "center center"
         }}
-        className="h-screen lg:h-[135vh] 2xl:h-screen flex items-center justify-center"
+        className="h-[90vh] lg:h-[135vh] 2xl:h-screen flex items-center justify-center"
       >
         {/* <div className="absolute bottom-0 left-0 w-full h-20 bg-[#E4B68A] rounded-t-[100000px]"></div> */}
         <div className="absolute bottom-0 lg:-bottom-61 2xl:bottom-0 left-0 w-full overflow-hidden leading-[0]">
