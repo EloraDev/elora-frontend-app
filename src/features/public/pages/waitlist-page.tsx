@@ -27,7 +27,7 @@ export const WaitlistPage = () => {
         className="h-screen lg:h-[135vh] 2xl:h-screen flex items-center justify-center"
       >
         {/* <div className="absolute bottom-0 left-0 w-full h-20 bg-[#E4B68A] rounded-t-[100000px]"></div> */}
-        <div className="absolute -bottom-0 lg:-bottom-64 2xl:bottom-0 left-0 w-full overflow-hidden leading-[0]">
+        <div className="absolute bottom-0 lg:-bottom-61 2xl:bottom-0 left-0 w-full overflow-hidden leading-[0]">
           <svg className="relative block w-full h-[40px] lg:h-[250px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,120 C300,0 900,0 1200,120 L1200,120 L0,120 Z" fill="#E4B68A"></path>
           </svg>
@@ -218,10 +218,7 @@ export const WaitlistPage = () => {
         <div
           className="relative pt-20 pb-10 overflow-hidden w-full"
           style={{
-            backgroundImage: `url("/img/skin-bias-bg.png")`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center center"
+            background: "linear-gradient(135deg, #FDFCFB 0%, #FAF9F6 50%, #FFFEF9 100%)"
           }}
         >
           <div className="relative z-10 mx-auto px-6 2xl:w-full 2xl:flex flex-col items-center justify-center">
@@ -232,11 +229,11 @@ export const WaitlistPage = () => {
                 </span>
               </div>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#5C321D] mb-6 leading-tight">
                 Skin Health Without Bias
               </h2>
 
-              <p className="text-xs sm:text-sm md:text-base text-white max-w-3xl mx-auto mb-4 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-[#5C321D] max-w-3xl mx-auto mb-4 leading-relaxed">
                 Elora's AI is built with inclusivity at its core — analyzing skin tones from light to deep with precision. Your skin deserves technology that understands it.
               </p>
             </div>
