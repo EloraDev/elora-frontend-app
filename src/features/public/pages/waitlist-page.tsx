@@ -24,11 +24,11 @@ export const WaitlistPage = () => {
           backgroundSize: "cover",
           backgroundPosition: "center center"
         }}
-        className="h-[95vh] lg:h-[135vh] 2xl:h-screen flex items-center justify-center"
+        className="h-[92vh] lg:h-[135vh] 2xl:h-screen flex items-center justify-center"
       >
         {/* <div className="absolute bottom-0 left-0 w-full h-20 bg-[#E4B68A] rounded-t-[100000px]"></div> */}
         <div className="absolute bottom-0 lg:-bottom-61 2xl:bottom-0 left-0 w-full overflow-hidden leading-[0]">
-          <svg className="relative block w-full h-[40px] lg:h-[250px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg className="relative block w-full h-[50px] lg:h-[250px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,120 C300,0 900,0 1200,120 L1200,120 L0,120 Z" fill="#E4B68A"></path>
           </svg>
         </div>
