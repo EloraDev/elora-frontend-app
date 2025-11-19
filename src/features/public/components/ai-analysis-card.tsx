@@ -57,8 +57,8 @@ function AIAnalysisCard() {
   return (
     <div className="min-h-[555.8159790039062px] w-full max-w-[616px] space-y-6 rounded-2xl border-t-[0.77px] border-white bg-[linear-gradient(180deg,#F5F1EB_0%,#FFFFFF_100%)] p-[32.76px] shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]">
       {/* HEADING */}
-      <div className="flex items-center justify-between">
-        <h3 className="text-[28px] font-semibold text-(--color-brown-dark)">
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="text-2xl font-semibold text-(--color-brown-dark) sm:text-[28px]">
           AI Analysis Results
         </h3>
         <span className="font-inter flex h-7 w-[87.58799743652344px] items-center justify-center rounded-full bg-(--color-green-light) text-sm text-(--color-green)">
@@ -69,7 +69,7 @@ function AIAnalysisCard() {
       {/* SKIN DEFECT COVERAGE */}
       <ul
         aria-label="Skin condition filters"
-        className="font-inter flex items-center gap-x-2 text-base"
+        className="font-inter flex flex-wrap items-center gap-2 text-base"
       >
         {skinDefects.map((skinDefect) => (
           <li key={skinDefect.type}>
@@ -132,7 +132,7 @@ function AIAnalysisCard() {
       </div>
 
       {/* DISCLAIMER */}
-      <div className="flex min-h-14 rounded-[10px] bg-(--color-blue-light) px-3">
+      <div className="flex min-h-14 rounded-[10px] bg-(--color-blue-light) p-3">
         <div className="my-auto flex gap-x-[7.16px]">
           <CircleAlert size={16} className="text-(--color-blue)" />
           <p className="font-inter text-xs leading-4 text-(--color-blue-dark)">
