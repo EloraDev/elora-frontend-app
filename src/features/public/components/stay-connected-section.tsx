@@ -1,9 +1,45 @@
+import { useState } from "react"
 import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
 import { Label } from "../../../components/ui/label"
 import { Textarea } from "../../../components/ui/textarea"
+import { useWaitlistMutation } from "../api/mutations"
+import { toast } from "sonner"
 
 export const StayConnectedSection = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    skinConcern: "",
+  })
+  const waitlistMutation = useWaitlistMutation()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!formData.fullName || !formData.email) {
+      toast.error("Please fill in all required fields")
+      return
+    }
+
+    try {
+      const result = await waitlistMutation.mutateAsync({
+        name: formData.fullName,
+        email: formData.email,
+        skinConcern: formData.skinConcern,
+      })
+
+      if (result.success) {
+        toast.success(result.message || "Successfully joined the waitlist!")
+        setFormData({ fullName: "", email: "", skinConcern: "" })
+      } else {
+        toast.error(result.error || "Failed to join waitlist. Please try again.")
+      }
+    } catch (error) {
+      console.error("Submission error:", error)
+      toast.error("An unexpected error occurred. Please try again.")
+    }
+  }
   return (
     <div className="relative mb-10">
       {/* Top Section with Background - Text and Social Media */}
@@ -101,55 +137,78 @@ export const StayConnectedSection = () => {
             </h3>
           </div>
           
-          <div className="grid gap-4 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="stay-connected-fullName" className="text-gray-700">
-                  Full Name
-                </Label>
-                <Input
-                  id="stay-connected-fullName"
-                  placeholder="Enter your full name"
-                  className="border-gray-300"
-                />
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="stay-connected-fullName" className="text-gray-700">
+                    Full Name <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="stay-connected-fullName"
+                    placeholder="Enter your full name"
+                    className="border-gray-300"
+                    value={formData.fullName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, fullName: e.target.value })
+                    }
+                    disabled={waitlistMutation.isPending}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="stay-connected-email" className="text-gray-700">
+                    Email Address <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="stay-connected-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    className="border-gray-300"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    disabled={waitlistMutation.isPending}
+                    required
+                  />
+                </div>
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="stay-connected-email" className="text-gray-700">
-                  Email Address
+                <Label htmlFor="stay-connected-skinConcern" className="text-gray-700">
+                  Skin Concern / Interest <span className="text-red-400 text-xs">*optional</span>
                 </Label>
-                <Input
-                  id="stay-connected-email"
-                  type="email"
-                  placeholder="Enter your email"
-                  className="border-gray-300"
+                <Textarea
+                  id="stay-connected-skinConcern"
+                  placeholder="Tell us about your skin concerns or interests..."
+                  className="border-gray-300 min-h-[100px]"
+                  value={formData.skinConcern}
+                  onChange={(e) =>
+                    setFormData({ ...formData, skinConcern: e.target.value })
+                  }
+                  disabled={waitlistMutation.isPending}
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="stay-connected-skinConcern" className="text-gray-700">
-                Skin Concern / Interest <span className="text-red-400 text-xs">*optional</span>
-              </Label>
-              <Textarea
-                id="stay-connected-skinConcern"
-                placeholder="Tell us about your skin concerns or interests..."
-                className="border-gray-300 min-h-[100px]"
-              />
+            <div className="space-y-4">
+              <Button
+                type="submit"
+                className="w-full bg-[#E4B68A] hover:bg-[#D4A67A] text-black font-medium py-2.5 md:py-3 text-sm md:text-base"
+                disabled={waitlistMutation.isPending}
+              >
+                {waitlistMutation.isPending ? "Joining..." : "Join the Waitlist"}
+              </Button>
+
+              <p className="text-center text-xs md:text-sm text-gray-600">
+                For enquiries and support{" "}
+                <a href="#" className="text-[#5DADE2] hover:underline">
+                  Contact Us
+                </a>
+              </p>
             </div>
-          </div>
-
-          <div className="space-y-4">
-            <Button className="w-full bg-[#E4B68A] hover:bg-[#D4A67A] text-black font-medium py-2.5 md:py-3 text-sm md:text-base">
-              Join the Waitlist
-            </Button>
-
-            <p className="text-center text-xs md:text-sm text-gray-600">
-              For enquiries and support{" "}
-              <a href="#" className="text-[#5DADE2] hover:underline">
-                Contact Us
-              </a>
-            </p>
-          </div>
+          </form>
         </div>
       </div>
     </div>
