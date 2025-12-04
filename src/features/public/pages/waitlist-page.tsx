@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
 import { Label } from "../../../components/ui/label"
@@ -13,8 +14,45 @@ import { ProcessStep } from "../components/process-step"
 import { PortraitGallery } from "../components/portrait-gallery"
 import { StayConnectedSection } from "../components/stay-connected-section"
 import { WaitlistFooter } from "../components/wailist-footer"
+import { useWaitlistMutation } from "../api/mutations"
+import { toast } from "sonner"
 
 export const WaitlistPage = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    skinConcern: "",
+  })
+  const [isOpen, setIsOpen] = useState(false)
+  const waitlistMutation = useWaitlistMutation()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!formData.fullName || !formData.email) {
+      toast.error("Please fill in all required fields")
+      return
+    }
+
+    try {
+      const result = await waitlistMutation.mutateAsync({
+        name: formData.fullName,
+        email: formData.email,
+        skinConcern: formData.skinConcern,
+      })
+
+      if (result.success) {
+        toast.success(result.message || "Successfully joined the waitlist!")
+        setFormData({ fullName: "", email: "", skinConcern: "" })
+        setIsOpen(false)
+      } else {
+        toast.error(result.error || "Failed to join waitlist. Please try again.")
+      }
+    } catch (error) {
+      console.error("Submission error:", error)
+      toast.error("An unexpected error occurred. Please try again.")
+    }
+  }
   return (
     <div className="font-bricolage">
       <div
@@ -47,7 +85,7 @@ export const WaitlistPage = () => {
             Join Elora's early access waitlist — the AI-powered teleDermatology platform that helps you identify, understand, and treat skin conditions with accuracy, privacy, and expert care.
           </p>
 
-          <Dialog>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <div className="relative">
                 <div
@@ -76,27 +114,40 @@ export const WaitlistPage = () => {
                 </DialogTitle>
               </DialogHeader>
 
+              <form onSubmit={handleSubmit}>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="fullName" className="text-gray-700">
-                      Full Name
+                        Full Name <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="fullName"
                       placeholder="Enter your full name"
                       className="border-gray-300"
+                        value={formData.fullName}
+                        onChange={(e) =>
+                          setFormData({ ...formData, fullName: e.target.value })
+                        }
+                        disabled={waitlistMutation.isPending}
+                        required
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-gray-700">
-                      Email Address
+                        Email Address <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="Enter your email"
                       className="border-gray-300"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        disabled={waitlistMutation.isPending}
+                        required
                     />
                   </div>
                 </div>
@@ -109,13 +160,22 @@ export const WaitlistPage = () => {
                     id="skinConcern"
                     placeholder="Tell us about your skin concerns or interests..."
                     className="border-gray-300 min-h-[100px]"
+                      value={formData.skinConcern}
+                      onChange={(e) =>
+                        setFormData({ ...formData, skinConcern: e.target.value })
+                      }
+                      disabled={waitlistMutation.isPending}
                   />
                 </div>
               </div>
 
               <div className="space-y-4">
-                <Button className="w-full bg-[#E4B68A] hover:bg-[#D4A67A] text-black font-medium py-3">
-                  Join the Waitlist
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#E4B68A] hover:bg-[#D4A67A] text-black font-medium py-3"
+                    disabled={waitlistMutation.isPending}
+                  >
+                    {waitlistMutation.isPending ? "Joining..." : "Join the Waitlist"}
                 </Button>
 
                 <p className="text-center text-sm text-gray-600">
@@ -125,6 +185,7 @@ export const WaitlistPage = () => {
                   </a>
                 </p>
               </div>
+              </form>
             </DialogContent>
           </Dialog>
         </div>
