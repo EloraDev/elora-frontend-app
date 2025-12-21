@@ -6,7 +6,7 @@ import image5 from "@/assets/img/section-ai-capabilities-image-5.jpg";
 
 function ImageSlide() {
   return (
-    <div className="flex gap-x-4.5 overflow-x-scroll [&>*]:shrink-0">
+    <div className="hide-scollbar flex gap-x-4.5 overflow-x-scroll [&>*]:shrink-0">
       {/* image ---1 */}
       <div className="relative h-127 w-80.5 overflow-hidden rounded-[39px] bg-(--color-brown)">
         <img
