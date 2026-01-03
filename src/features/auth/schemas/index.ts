@@ -15,7 +15,7 @@ export const registerSchema = z
     email: z.string().email("Please enter a valid email"),
     phone: z.string().min(10, "Please enter a valid phone number"),
     gender: z.enum(["male", "female", "other"], {
-      required_error: "Please select your gender",
+      message: "Please select your gender",
     }),
     date_of_birth: z.string().min(1, "Date of birth is required"),
     password: z

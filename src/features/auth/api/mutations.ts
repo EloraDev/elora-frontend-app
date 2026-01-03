@@ -37,16 +37,13 @@ export const useRegisterMutation = () => {
         throw error;
       }
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Account created! Please check your email to verify your account before logging in.", {
         duration: 6000,
       });
       // Don't auto-login or store token - user needs to verify email first
-      // Redirect to login page with email pre-filled
-      navigate({ 
-        to: "/auth/login",
-        search: { email: data.user_id } // Or whatever field has email
-      });
+      // Redirect to login page
+      navigate({ to: "/auth/login" });
     },
     onError: (error: any) => {
       toast.error(error.message || "Registration failed. Please try again.");
