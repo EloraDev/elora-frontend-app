@@ -1,18 +1,11 @@
-// import { getQueryClient, QueryProviders } from "~/providers/query.provider";
-// import { AuthProvider } from "~/providers/auth.provider";
-// import { TooltipProvider } from "@workspace/web-ui/components/tooltip";
-// import { Toaster } from "@workspace/web-ui/components/sonner";
-// import { NotFound } from "~/components/not-found";
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import {
   QueryProviders,
   type getQueryClient,
 } from "../providers/query.provider";
-import type { AuthContextType } from "../providers/auth.provider";
+import { AuthProvider, type AuthContextType } from "../providers/auth.provider";
 import { Toaster } from "sonner";
 import { NotFound } from "../components/not-found";
-// import { SidebarProvider } from "@workspace/web-ui/components/sidebar";
-// import { AuthContextType } from '~/providers/auth.provider'
 
 interface RouterContext {
   auth: AuthContextType | null;
@@ -38,14 +31,10 @@ function RootComponent() {
       aria-label="Main application layout"
     >
       <QueryProviders>
-        {/* <TooltipProvider delayDuration={200}> */}
-        {/* <AuthProvider> */}
-        {/* <SidebarProvider> */}
-        <Outlet />
-        <Toaster position="top-right" />
-        {/* </SidebarProvider> */}
-        {/* </AuthProvider> */}
-        {/* </TooltipProvider> */}
+        <AuthProvider>
+          <Outlet />
+          <Toaster position="top-right" />
+        </AuthProvider>
       </QueryProviders>
     </main>
   );

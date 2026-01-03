@@ -29,10 +29,55 @@ export type UpdatePasswordType = {
   confirmPassword?: string
 };
 
-export type UserLoginData = Response & {
-    user_id: string;
-    token: string;
+// Token info from login response
+export interface TokenInfo {
+    expiresAt: string;
+    expiresIn: number;
+    isExpiringSoon: boolean;
 }
+
+// User data from login response
+export interface LoginUser {
+    id: number;
+    email: string;
+    first_name: string;
+    last_name: string;
+    phone: string | null;
+    address: string | null;
+    created_at: string;
+    date_of_birth: string | null;
+    email_verified: number;
+    email_verified_at: string | null;
+    emergency_contact_name: string | null;
+    emergency_contact_phone: string | null;
+    gender: string | null;
+    insurance_provider: string | null;
+    ip_address: string | null;
+    policy_number: string | null;
+    primary_role: string;
+    reset_token: string | null;
+    reset_token_expires: string | null;
+    updated_at: string;
+    verification_token: string | null;
+    verification_token_expires: string | null;
+}
+
+// The actual data object inside the login response
+export interface LoginResponseData {
+    token: string;
+    tokenInfo: TokenInfo;
+    user: LoginUser;
+}
+
+// Full login API response
+export interface LoginApiResponse {
+    success: boolean;
+    message: string;
+    data: LoginResponseData;
+}
+
+// For the mutation, we receive the unwrapped data
+export type UserLoginData = LoginApiResponse
 
 export type UserLoginResponse = SuccessResponse<UserLoginData> | ErrorResponse;
 

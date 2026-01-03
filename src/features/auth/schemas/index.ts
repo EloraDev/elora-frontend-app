@@ -10,15 +10,17 @@ export const loginSchema = z.object({
 
 export const registerSchema = z
   .object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
+    first_name: z.string().min(2, "First name must be at least 2 characters"),
+    last_name: z.string().min(2, "Last name must be at least 2 characters"),
     email: z.string().email("Please enter a valid email"),
+    phone: z.string().min(10, "Please enter a valid phone number"),
+    gender: z.enum(["male", "female", "other"], {
+      required_error: "Please select your gender",
+    }),
+    date_of_birth: z.string().min(1, "Date of birth is required"),
     password: z
       .string()
-      .min(8, "Password too short")
-      .regex(/[A-Z]/, "Password must contain uppercase letter")
-      .regex(/[a-z]/, "Password must contain lowercase letter")
-      .regex(/[0-9]/, "Password must contain number")
-      .regex(/[^A-Za-z0-9]/, "Password must contain special character"),
+      .min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

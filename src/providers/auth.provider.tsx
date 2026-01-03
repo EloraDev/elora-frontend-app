@@ -1,16 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
-// import { useLogoutMutation } from "~/features/auth/api/mutations";
-// import { useAuthUser } from "~/features/auth/api/queries";
-// import { AuthState } from "~/types/auth";
-// import { AuthUser } from "~/types/users";
 import { authService } from "../service/auth.service";
 import { AuthState } from "../types/auth";
 import { useLogoutMutation } from "../features/auth/api/mutations";
 import { useAuthUser } from "../features/auth/api/queries";
-import type { AuthUser } from "../features/auth/types";
+import type { LoginUser } from "../features/auth/types";
 
 export interface AuthContextType {
-  user: AuthUser | null | undefined;
+  user: LoginUser | null | undefined;
   authState: AuthState;
   setAuthState: (state: AuthState) => void;
   logout: () => void;
@@ -26,9 +22,17 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [authState, setAuthState] = useState<AuthState>(AuthState.IDLE);
-  const { data: user, isError, isLoading, refetch } = useAuthUser();
+  // Initialize with cached user from localStorage for immediate display
+  const [cachedUser] = useState<LoginUser | null>(() => authService.getUser());
+  const [authState, setAuthState] = useState<AuthState>(() => 
+    authService.isAuthenticated() ? AuthState.AUTHENTICATED : AuthState.IDLE
+  );
+  
+  const { data: fetchedUser, isError, isLoading, refetch } = useAuthUser();
   const logoutMutation = useLogoutMutation();
+
+  // Use fetched user if available, otherwise fall back to cached user
+  const user = fetchedUser ?? cachedUser;
 
   const handleLogout = async () => {
     try {
@@ -60,7 +64,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const contextValue = {
     user: user ?? undefined,
-    authState: isLoading ? AuthState.AUTHENTICATING : authState,
+    // Only show authenticating if we have no cached user and are loading
+    authState: (isLoading && !cachedUser) ? AuthState.AUTHENTICATING : authState,
     setAuthState,
     logout: handleLogout,
     refetch,
