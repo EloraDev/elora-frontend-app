@@ -24,13 +24,18 @@ import { Route as dashboardDashboardAppointmentsRouteImport } from './routes/(da
 import { Route as authAuthSignupRouteImport } from './routes/(auth)/auth/signup'
 import { Route as authAuthLoginRouteImport } from './routes/(auth)/auth/login'
 import { Route as publicPublicOnboardingIndexRouteImport } from './routes/(public)/_public/onboarding/index'
+import { Route as publicPublicBookConsultationsIndexRouteImport } from './routes/(public)/_public/book-consultations/index'
+import { Route as publicPublicAiDiagnosisIndexRouteImport } from './routes/(public)/_public/ai-diagnosis/index'
 import { Route as dashboardDashboardScanIndexRouteImport } from './routes/(dashboard)/dashboard/scan/index'
 import { Route as dashboardDashboardResultIndexRouteImport } from './routes/(dashboard)/dashboard/result/index'
 import { Route as dashboardDashboardRecordsIndexRouteImport } from './routes/(dashboard)/dashboard/records/index'
 import { Route as dashboardDashboardProfileIndexRouteImport } from './routes/(dashboard)/dashboard/profile/index'
+import { Route as dashboardDashboardHistoryIndexRouteImport } from './routes/(dashboard)/dashboard/history/index'
 import { Route as dashboardDashboardAppointmentsIndexRouteImport } from './routes/(dashboard)/dashboard/appointments/index'
 import { Route as publicPublicOnboardingPaymentRouteImport } from './routes/(public)/_public/onboarding/payment'
 import { Route as publicPublicOnboardingBookingRouteImport } from './routes/(public)/_public/onboarding/booking'
+import { Route as publicPublicBookConsultationsDoctorRouteImport } from './routes/(public)/_public/book-consultations/$doctor'
+import { Route as dashboardDashboardAppointmentsBookingIndexRouteImport } from './routes/(dashboard)/dashboard/appointments/booking/index'
 
 const publicRouteImport = createFileRoute('/(public)')()
 
@@ -107,6 +112,18 @@ const publicPublicOnboardingIndexRoute =
     path: '/onboarding/',
     getParentRoute: () => publicPublicRoute,
   } as any)
+const publicPublicBookConsultationsIndexRoute =
+  publicPublicBookConsultationsIndexRouteImport.update({
+    id: '/book-consultations/',
+    path: '/book-consultations/',
+    getParentRoute: () => publicPublicRoute,
+  } as any)
+const publicPublicAiDiagnosisIndexRoute =
+  publicPublicAiDiagnosisIndexRouteImport.update({
+    id: '/ai-diagnosis/',
+    path: '/ai-diagnosis/',
+    getParentRoute: () => publicPublicRoute,
+  } as any)
 const dashboardDashboardScanIndexRoute =
   dashboardDashboardScanIndexRouteImport.update({
     id: '/',
@@ -131,6 +148,12 @@ const dashboardDashboardProfileIndexRoute =
     path: '/',
     getParentRoute: () => dashboardDashboardProfileRoute,
   } as any)
+const dashboardDashboardHistoryIndexRoute =
+  dashboardDashboardHistoryIndexRouteImport.update({
+    id: '/history/',
+    path: '/history/',
+    getParentRoute: () => dashboardDashboardRoute,
+  } as any)
 const dashboardDashboardAppointmentsIndexRoute =
   dashboardDashboardAppointmentsIndexRouteImport.update({
     id: '/',
@@ -149,6 +172,18 @@ const publicPublicOnboardingBookingRoute =
     path: '/onboarding/booking',
     getParentRoute: () => publicPublicRoute,
   } as any)
+const publicPublicBookConsultationsDoctorRoute =
+  publicPublicBookConsultationsDoctorRouteImport.update({
+    id: '/book-consultations/$doctor',
+    path: '/book-consultations/$doctor',
+    getParentRoute: () => publicPublicRoute,
+  } as any)
+const dashboardDashboardAppointmentsBookingIndexRoute =
+  dashboardDashboardAppointmentsBookingIndexRouteImport.update({
+    id: '/booking/',
+    path: '/booking/',
+    getParentRoute: () => dashboardDashboardAppointmentsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/dashboard': typeof dashboardDashboardRouteWithChildren
@@ -162,14 +197,19 @@ export interface FileRoutesByFullPath {
   '/dashboard/scan': typeof dashboardDashboardScanRouteWithChildren
   '/landing': typeof publicPublicLandingRoute
   '/dashboard/': typeof dashboardDashboardIndexRoute
+  '/book-consultations/$doctor': typeof publicPublicBookConsultationsDoctorRoute
   '/onboarding/booking': typeof publicPublicOnboardingBookingRoute
   '/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
   '/dashboard/appointments/': typeof dashboardDashboardAppointmentsIndexRoute
+  '/dashboard/history': typeof dashboardDashboardHistoryIndexRoute
   '/dashboard/profile/': typeof dashboardDashboardProfileIndexRoute
   '/dashboard/records/': typeof dashboardDashboardRecordsIndexRoute
   '/dashboard/result/': typeof dashboardDashboardResultIndexRoute
   '/dashboard/scan/': typeof dashboardDashboardScanIndexRoute
+  '/ai-diagnosis': typeof publicPublicAiDiagnosisIndexRoute
+  '/book-consultations': typeof publicPublicBookConsultationsIndexRoute
   '/onboarding': typeof publicPublicOnboardingIndexRoute
+  '/dashboard/appointments/booking': typeof dashboardDashboardAppointmentsBookingIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth/login': typeof authAuthLoginRoute
@@ -177,14 +217,19 @@ export interface FileRoutesByTo {
   '/landing': typeof publicPublicLandingRoute
   '/dashboard': typeof dashboardDashboardIndexRoute
   '/': typeof publicPublicIndexRoute
+  '/book-consultations/$doctor': typeof publicPublicBookConsultationsDoctorRoute
   '/onboarding/booking': typeof publicPublicOnboardingBookingRoute
   '/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
   '/dashboard/appointments': typeof dashboardDashboardAppointmentsIndexRoute
+  '/dashboard/history': typeof dashboardDashboardHistoryIndexRoute
   '/dashboard/profile': typeof dashboardDashboardProfileIndexRoute
   '/dashboard/records': typeof dashboardDashboardRecordsIndexRoute
   '/dashboard/result': typeof dashboardDashboardResultIndexRoute
   '/dashboard/scan': typeof dashboardDashboardScanIndexRoute
+  '/ai-diagnosis': typeof publicPublicAiDiagnosisIndexRoute
+  '/book-consultations': typeof publicPublicBookConsultationsIndexRoute
   '/onboarding': typeof publicPublicOnboardingIndexRoute
+  '/dashboard/appointments/booking': typeof dashboardDashboardAppointmentsBookingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -201,14 +246,19 @@ export interface FileRoutesById {
   '/(public)/_public/landing': typeof publicPublicLandingRoute
   '/(dashboard)/dashboard/': typeof dashboardDashboardIndexRoute
   '/(public)/_public/': typeof publicPublicIndexRoute
+  '/(public)/_public/book-consultations/$doctor': typeof publicPublicBookConsultationsDoctorRoute
   '/(public)/_public/onboarding/booking': typeof publicPublicOnboardingBookingRoute
   '/(public)/_public/onboarding/payment': typeof publicPublicOnboardingPaymentRoute
   '/(dashboard)/dashboard/appointments/': typeof dashboardDashboardAppointmentsIndexRoute
+  '/(dashboard)/dashboard/history/': typeof dashboardDashboardHistoryIndexRoute
   '/(dashboard)/dashboard/profile/': typeof dashboardDashboardProfileIndexRoute
   '/(dashboard)/dashboard/records/': typeof dashboardDashboardRecordsIndexRoute
   '/(dashboard)/dashboard/result/': typeof dashboardDashboardResultIndexRoute
   '/(dashboard)/dashboard/scan/': typeof dashboardDashboardScanIndexRoute
+  '/(public)/_public/ai-diagnosis/': typeof publicPublicAiDiagnosisIndexRoute
+  '/(public)/_public/book-consultations/': typeof publicPublicBookConsultationsIndexRoute
   '/(public)/_public/onboarding/': typeof publicPublicOnboardingIndexRoute
+  '/(dashboard)/dashboard/appointments/booking/': typeof dashboardDashboardAppointmentsBookingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -224,14 +274,19 @@ export interface FileRouteTypes {
     | '/dashboard/scan'
     | '/landing'
     | '/dashboard/'
+    | '/book-consultations/$doctor'
     | '/onboarding/booking'
     | '/onboarding/payment'
     | '/dashboard/appointments/'
+    | '/dashboard/history'
     | '/dashboard/profile/'
     | '/dashboard/records/'
     | '/dashboard/result/'
     | '/dashboard/scan/'
+    | '/ai-diagnosis'
+    | '/book-consultations'
     | '/onboarding'
+    | '/dashboard/appointments/booking'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth/login'
@@ -239,14 +294,19 @@ export interface FileRouteTypes {
     | '/landing'
     | '/dashboard'
     | '/'
+    | '/book-consultations/$doctor'
     | '/onboarding/booking'
     | '/onboarding/payment'
     | '/dashboard/appointments'
+    | '/dashboard/history'
     | '/dashboard/profile'
     | '/dashboard/records'
     | '/dashboard/result'
     | '/dashboard/scan'
+    | '/ai-diagnosis'
+    | '/book-consultations'
     | '/onboarding'
+    | '/dashboard/appointments/booking'
   id:
     | '__root__'
     | '/(dashboard)/dashboard'
@@ -262,14 +322,19 @@ export interface FileRouteTypes {
     | '/(public)/_public/landing'
     | '/(dashboard)/dashboard/'
     | '/(public)/_public/'
+    | '/(public)/_public/book-consultations/$doctor'
     | '/(public)/_public/onboarding/booking'
     | '/(public)/_public/onboarding/payment'
     | '/(dashboard)/dashboard/appointments/'
+    | '/(dashboard)/dashboard/history/'
     | '/(dashboard)/dashboard/profile/'
     | '/(dashboard)/dashboard/records/'
     | '/(dashboard)/dashboard/result/'
     | '/(dashboard)/dashboard/scan/'
+    | '/(public)/_public/ai-diagnosis/'
+    | '/(public)/_public/book-consultations/'
     | '/(public)/_public/onboarding/'
+    | '/(dashboard)/dashboard/appointments/booking/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -379,6 +444,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicPublicOnboardingIndexRouteImport
       parentRoute: typeof publicPublicRoute
     }
+    '/(public)/_public/book-consultations/': {
+      id: '/(public)/_public/book-consultations/'
+      path: '/book-consultations'
+      fullPath: '/book-consultations'
+      preLoaderRoute: typeof publicPublicBookConsultationsIndexRouteImport
+      parentRoute: typeof publicPublicRoute
+    }
+    '/(public)/_public/ai-diagnosis/': {
+      id: '/(public)/_public/ai-diagnosis/'
+      path: '/ai-diagnosis'
+      fullPath: '/ai-diagnosis'
+      preLoaderRoute: typeof publicPublicAiDiagnosisIndexRouteImport
+      parentRoute: typeof publicPublicRoute
+    }
     '/(dashboard)/dashboard/scan/': {
       id: '/(dashboard)/dashboard/scan/'
       path: '/'
@@ -407,6 +486,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof dashboardDashboardProfileIndexRouteImport
       parentRoute: typeof dashboardDashboardProfileRoute
     }
+    '/(dashboard)/dashboard/history/': {
+      id: '/(dashboard)/dashboard/history/'
+      path: '/history'
+      fullPath: '/dashboard/history'
+      preLoaderRoute: typeof dashboardDashboardHistoryIndexRouteImport
+      parentRoute: typeof dashboardDashboardRoute
+    }
     '/(dashboard)/dashboard/appointments/': {
       id: '/(dashboard)/dashboard/appointments/'
       path: '/'
@@ -428,17 +514,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicPublicOnboardingBookingRouteImport
       parentRoute: typeof publicPublicRoute
     }
+    '/(public)/_public/book-consultations/$doctor': {
+      id: '/(public)/_public/book-consultations/$doctor'
+      path: '/book-consultations/$doctor'
+      fullPath: '/book-consultations/$doctor'
+      preLoaderRoute: typeof publicPublicBookConsultationsDoctorRouteImport
+      parentRoute: typeof publicPublicRoute
+    }
+    '/(dashboard)/dashboard/appointments/booking/': {
+      id: '/(dashboard)/dashboard/appointments/booking/'
+      path: '/booking'
+      fullPath: '/dashboard/appointments/booking'
+      preLoaderRoute: typeof dashboardDashboardAppointmentsBookingIndexRouteImport
+      parentRoute: typeof dashboardDashboardAppointmentsRoute
+    }
   }
 }
 
 interface dashboardDashboardAppointmentsRouteChildren {
   dashboardDashboardAppointmentsIndexRoute: typeof dashboardDashboardAppointmentsIndexRoute
+  dashboardDashboardAppointmentsBookingIndexRoute: typeof dashboardDashboardAppointmentsBookingIndexRoute
 }
 
 const dashboardDashboardAppointmentsRouteChildren: dashboardDashboardAppointmentsRouteChildren =
   {
     dashboardDashboardAppointmentsIndexRoute:
       dashboardDashboardAppointmentsIndexRoute,
+    dashboardDashboardAppointmentsBookingIndexRoute:
+      dashboardDashboardAppointmentsBookingIndexRoute,
   }
 
 const dashboardDashboardAppointmentsRouteWithChildren =
@@ -509,6 +612,7 @@ interface dashboardDashboardRouteChildren {
   dashboardDashboardResultRoute: typeof dashboardDashboardResultRouteWithChildren
   dashboardDashboardScanRoute: typeof dashboardDashboardScanRouteWithChildren
   dashboardDashboardIndexRoute: typeof dashboardDashboardIndexRoute
+  dashboardDashboardHistoryIndexRoute: typeof dashboardDashboardHistoryIndexRoute
 }
 
 const dashboardDashboardRouteChildren: dashboardDashboardRouteChildren = {
@@ -519,6 +623,7 @@ const dashboardDashboardRouteChildren: dashboardDashboardRouteChildren = {
   dashboardDashboardResultRoute: dashboardDashboardResultRouteWithChildren,
   dashboardDashboardScanRoute: dashboardDashboardScanRouteWithChildren,
   dashboardDashboardIndexRoute: dashboardDashboardIndexRoute,
+  dashboardDashboardHistoryIndexRoute: dashboardDashboardHistoryIndexRoute,
 }
 
 const dashboardDashboardRouteWithChildren =
@@ -527,16 +632,24 @@ const dashboardDashboardRouteWithChildren =
 interface publicPublicRouteChildren {
   publicPublicLandingRoute: typeof publicPublicLandingRoute
   publicPublicIndexRoute: typeof publicPublicIndexRoute
+  publicPublicBookConsultationsDoctorRoute: typeof publicPublicBookConsultationsDoctorRoute
   publicPublicOnboardingBookingRoute: typeof publicPublicOnboardingBookingRoute
   publicPublicOnboardingPaymentRoute: typeof publicPublicOnboardingPaymentRoute
+  publicPublicAiDiagnosisIndexRoute: typeof publicPublicAiDiagnosisIndexRoute
+  publicPublicBookConsultationsIndexRoute: typeof publicPublicBookConsultationsIndexRoute
   publicPublicOnboardingIndexRoute: typeof publicPublicOnboardingIndexRoute
 }
 
 const publicPublicRouteChildren: publicPublicRouteChildren = {
   publicPublicLandingRoute: publicPublicLandingRoute,
   publicPublicIndexRoute: publicPublicIndexRoute,
+  publicPublicBookConsultationsDoctorRoute:
+    publicPublicBookConsultationsDoctorRoute,
   publicPublicOnboardingBookingRoute: publicPublicOnboardingBookingRoute,
   publicPublicOnboardingPaymentRoute: publicPublicOnboardingPaymentRoute,
+  publicPublicAiDiagnosisIndexRoute: publicPublicAiDiagnosisIndexRoute,
+  publicPublicBookConsultationsIndexRoute:
+    publicPublicBookConsultationsIndexRoute,
   publicPublicOnboardingIndexRoute: publicPublicOnboardingIndexRoute,
 }
 

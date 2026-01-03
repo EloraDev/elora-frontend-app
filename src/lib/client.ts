@@ -7,22 +7,33 @@ if (!config.apiUrl) {
 
 type FetchFunction = typeof fetch;
 
-const PUBLIC_ENDPOINTS = ["/admin/authentication", "/admin/reset-password", "admin/reset-password-request"] as const;
+const PUBLIC_ENDPOINTS = ["/auth/login", "/auth/register"] as const;
 
 const isPublicEndpoint = (url: string | URL | Request): boolean => {
   const urlString = url instanceof Request ? url.url : url.toString();
 
   const path = urlString.startsWith('/') ? urlString : new URL(urlString).pathname;
 
-  return PUBLIC_ENDPOINTS.some((endpoint) => path === endpoint);
+  return PUBLIC_ENDPOINTS.some((endpoint) => path === endpoint || path.includes(endpoint));
 };
 
 const createAuthFetch = (baseFetch: FetchFunction): FetchFunction => {
   return async (input, init) => {
     try {
-      const url = input instanceof Request ? 
-        new URL(input.url, config.apiUrl) : 
-        new URL(input.toString(), config.apiUrl);
+      // Construct the full URL by concatenating base URL with the path
+      let fullUrl: string;
+      
+      if (input instanceof Request) {
+        const path = new URL(input.url).pathname;
+        fullUrl = `${config.apiUrl}${path}`;
+      } else {
+        const path = input.toString();
+        // Remove leading slash if present to avoid double slashes
+        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+        fullUrl = `${config.apiUrl}/${cleanPath}`;
+      }
+      
+      const url = new URL(fullUrl);
 
       if (isPublicEndpoint(url.pathname)) {
         const headers = new Headers(init?.headers);
